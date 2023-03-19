@@ -1,4 +1,10 @@
 $(document).ready(function () {
+  // hide spinner
+  setTimeout(function () {
+    $(".spinner-border").hide();
+    $(".container").removeClass("opacity");
+    $(".content").removeClass("opacity");
+  }, 1000);
   //show or hide password
   $("#toggle-password").click(function () {
     $("#toggle-password").toggleClass("fa-eye fa-eye-slash");
@@ -50,6 +56,8 @@ $(document).ready(function () {
       },
     },
     submitHandler: function (form) {
+      $(".container").addClass("opacity");
+      $(".spinner-border").show();
       $.ajaxSetup({
         headers: {
           "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
@@ -75,11 +83,19 @@ $(document).ready(function () {
           } else if (json.response && json.response.message) {
             $("#results").text(json.response.message);
           }
+          setTimeout(function () {
+            $(".spinner-border").hide();
+            $(".container").removeClass("opacity");
+          }, 1000);
         },
 
         // handle a non-successful response
         error: function (xhr, errmsg, err) {
           console.log(errmsg);
+          setTimeout(function () {
+            $(".spinner-border").hide();
+            $(".container").removeClass("opacity");
+          }, 1000);
         },
       });
     },
@@ -102,6 +118,8 @@ $(document).ready(function () {
     },
     submitHandler: function (form) {
       console.log("form submitted!"); // sanity check
+      $(".container").addClass("opacity");
+      $(".spinner-border").show();
       $.ajaxSetup({
         headers: {
           "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
@@ -124,11 +142,19 @@ $(document).ready(function () {
           } else if (json.response && json.response.message) {
             $("#results").text(json.response.message);
           }
+          setTimeout(function () {
+            $(".spinner-border").hide();
+            $(".container").removeClass("opacity");
+          }, 1000);
         },
 
         // handle a non-successful response
         error: function (xhr, errmsg, err) {
           console.log(errmsg);
+          setTimeout(function () {
+            $(".spinner-border").hide();
+            $(".container").removeClass("opacity");
+          }, 1000);
         },
       });
       // form.submit();
@@ -162,7 +188,9 @@ $(document).ready(function () {
       nextPageEl.innerHTML = "";
       $(".paginate_button.next").append('<i class="fa fa-angle-right"></i>');
 
-      $(".paginate_button").append('<i class="fa fa-bolt" aria-hidden="true"></i>');
+      $(".paginate_button").append(
+        '<i class="fa fa-bolt" aria-hidden="true"></i>'
+      );
 
       var queue = document.getElementsByClassName("previous");
       var elements = queue[0].getElementsByTagName("i");
@@ -170,8 +198,7 @@ $(document).ready(function () {
       var queue = document.getElementsByClassName("next");
       var elements = queue[0].getElementsByTagName("i");
       queue[0].removeChild(elements[1]);
-    
-    }
+    },
   });
 
   $("#myTable_info").hide();

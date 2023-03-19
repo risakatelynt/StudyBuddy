@@ -141,7 +141,7 @@ textarea.input-control {
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
     position: relative;
     height: 75px;
 }
@@ -168,6 +168,5 @@ textarea.input-control {
 p.error {
     color: #a70115b8;
     margin-left: 20px;
-    padding-top: 6px;
-    font-weight: 700;
+    /* font-weight: 700; */
 }
