@@ -1,0 +1,268 @@
+.table {
+    display: table;
+    width: 100%;
+}
+
+.nav {
+    box-shadow: 0px 3px 10px;
+    position: relative;
+}
+
+.nav li:first-child {
+    width: 10%;
+}
+
+.nav li:last-child {
+    width: 20%;
+}
+
+.nav-tabs .nav-link.disabled {
+    color: #000;
+}
+
+li.nav-item {
+    width: 35%;
+    height: 59px;
+    line-height: 44px;
+    text-align: center;
+    border: 1px solid #dedede;
+}
+
+.nav-link {
+    color: #000;
+    width: 100%;
+}
+
+.nav-tabs .nav-item.active {
+    box-shadow: 0px 2px 3px;
+}
+
+.table .nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+    background-color: #dedede !important;
+    height: 59px;
+}
+
+.table .nav-tabs .nav-link {
+    height: 59px;
+    font-size: 18px;
+}
+
+.table .nav-tabs .nav-link.disabled {
+    padding-top: 8px;
+}
+
+.bulb-img {
+    width: 70px;
+    height: 50px;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    padding: 0;
+}
+
+.tab-content {
+    background-color: #fff;
+}
+
+.search-input {
+    border: 1px solid #000;
+    border-radius: 0px;
+    padding-left: 2.375rem;
+    height: 35px;
+}
+
+.search-input:focus {
+    outline: -webkit-focus-ring-color auto 1px !important;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 32px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    pointer-events: none;
+    color: #000;
+}
+
+.carousel-control-prev-icon {
+    background-image:
+        url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+/* .carousel-control-prev {
+    left: -105px;
+}
+
+.carousel-control-next {
+    right: -105px;
+} */
+
+.carousel-img-width {
+    width: 100%;
+    height: 120px;
+}
+
+.carousel-indicators {
+    display: none;
+}
+
+.card {
+    height: 400px;
+}
+
+.card-img-top {
+    height: 156px;
+}
+
+.fa-star {
+    color: #d3cece;
+    font-size: 16px;
+}
+
+.checked {
+    color: #000;
+}
+
+.size-16 {
+    font-size: 16px;
+}
+
+.card-title {
+    font-size: 12px;
+}
+
+.card-text {
+    font-size: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+}
+
+.card-footer {
+    background: none;
+    border: none;
+}
+
+#carousel {
+    margin-top: 0px;
+}
+
+.carousel-item .thumb {
+    float: left;
+}
+
+.carousel-item .thumb img,
+.carousel-item img {
+    width: 100%;
+}
+
+
+
+
+.dataTables_wrapper {
+    width: 100%;
+}
+
+#myTable_filter input {
+    color: #555;
+    padding-left: 8px;
+    padding-right: 30px;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: 34px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    outline-offset: 0;
+}
+
+#myTable_filter .fa-search {
+    position: relative;
+    right: 24px;
+    top: 0px;
+}
+
+#myTable_length {
+    padding-top: 8px;
+}
+
+#myTable_length select {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+table.dataTable.no-footer {
+    padding-top: 16px;
+}
+
+.dataTables_wrapper .dataTables_paginate.paging_simple_numbers a.paginate_button {
+    color: #a9a9a9 !important;
+    border: none !important;
+    background: none !important;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.dataTables_wrapper .dataTables_paginate a.paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    border: none !important;
+    background: none !important;
+    box-shadow: none;
+    color: #000 !important;
+}
+
+div#myTable_paginate {
+    margin: auto;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    font-size: 16px;
+    float: none;
+    width: 50%;
+    text-align: center;
+}
+
+i.fa.fa-bolt {
+    position: relative;
+    top: -19px;
+    right: -5px;
+}
+
+.table>thead:first-child>tr:first-child>th {
+    background: black;
+    color: white;
+}
+
+.table>tbody>tr>td {
+    border-bottom: 1px solid #000
+}
+
+td:first-child {
+    background-color: #ffd5dab8;
+}
+
+td:nth-child(2) {
+    background-color: #caffd6b5;
+}
+
+td:last-child {
+    background-color: #f3ffcab5;
+}
+
+.disabled {
+    pointer-events: none;
+}
