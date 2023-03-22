@@ -1,4 +1,4 @@
-from .models import User
+from .models import User,Tag,Note,Question
 from .serializers import NoteSerializer
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from datetime import datetime
 from django.views import View
+from .forms import NoteForm
 
 # Create your views here.
 def loginview(request):
@@ -37,7 +38,8 @@ def loginview(request):
         # 如果是 GET 请求，返回空的登录表单
         return render(request, 'login.html')
     
-    
+def home(request):
+    return render(request, 'notes.html')
     
 def register(request):
     if request.method == 'POST':
@@ -109,8 +111,64 @@ def login(request):
     context_dict = {}
     return render(request, 'login.html', context=context_dict)
 '''
-def notes(request):
-    context_dict = {}
-    return render(request, 'notes.html', context=context_dict)
+def createNote(request):
+    form = NoteForm()
+    tags = Tag.objects.all()
+    if request.method == 'POST':
+        tag_name = request.POST.get('tag')
+        tag, created = Tag.objects.get_or_create(name=tag_name)
+
+        Note.objects.create(
+            user=request.user,
+            tag=tag,
+            title=request.POST.get('title'),
+            content=request.POST.get('content'),
+        )
+        return redirect('notes.html')
+
+    context = {'form': form, 'tags': tags}
+    return render(request, 'notes.html', context)
+
+def getNote(request):
+    if request.method == 'GET':
+        notes = [{"image" : "../static/images/image1.png", "title": "Django cautions", "content": "A brief description of the Django frameworks", "rank": "4"},
+                 {"image" : "../static/images/image2.png","title": "Introduction to Django", "content": "Overview of the history of Django has advantages and disadvantages, etc.", "rank": "3"},
+                 {"image" : "../static/images/image3.png","title": "Django's manual", "content": "Some basic teaching of Django", "rank": "3"},
+                 {"image" : "../static/images/jquery.png","title": "jQuery", "content": "How to use jQuery", "rank": "5"}, 
+                 {"image" : "../static/images/frontend.jpg","title": "Frontend", "content": "Introduction to HTML, CSS, JS", "rank": "4"}, 
+                 {"image" : "../static/images/angular.png","title": "Angular", "content": "How to use angular to create a single page application", "rank": "5"},]
+        status_message = {'response' : notes}
+        # return render(request, 'notes.html', status_message)
+        return JsonResponse(status_message)
+
+def updateNote(request, pk):
+    note = Note.objects.get(id=pk)
+    form = NoteForm(instance=note)
+    tags = Tag.objects.all()
+    if request.user != note.host:
+        return HttpResponse('Your are not allowed here!!')
+
+    if request.method == 'POST':
+        tag_name = request.POST.get('topic')
+        tag, created = Tag.objects.get_or_create(name=tag_name)
+        note.name = request.POST.get('name')
+        note.tag = tag
+        note.description = request.POST.get('description')
+        note.save()
+        return redirect('notes.html')
+
+    context = {'form': form, 'tags': tags, 'note': note}
+    return render(request, 'notes.html', context)
+
+def deleteNote(request, pk):
+    note = Note.objects.get(id=pk)
+
+    if request.user != note.user:
+        return HttpResponse('Your are not allowed here!!')
+
+    if request.method == 'POST':
+        note.delete()
+        return redirect('notes.html')
+    return render(request, 'notes.html', {'obj': note})
 
 

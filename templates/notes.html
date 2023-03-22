@@ -6,7 +6,7 @@
 
 <div class="spinner-border text-warning" role="status">
     <span class="sr-only">Loading...</span>
-  </div>
+</div>
 <div class="table content opacity">
     <ul class="nav nav-tabs" id="tabs-nav" role="tablist">
         <li class="nav-item disabled" role="presentation">
@@ -23,8 +23,8 @@
             </a>
         </li>
         <li class="nav-item disabled" role="presentation">
-            <div class="nav-link disabled" tabindex="-1" aria-disabled="true">
-                Hello, Risa
+            <div class="nav-link disabled" id="userId" tabindex="-1" aria-disabled="true">
+                Hello, 
             </div>
         </li>
     </ul>
@@ -45,13 +45,35 @@
                     </div>
                 </div>
 
-                <div id="carousel" class="carousel slide" data-interval="false">
+                <div class="notesList"></div>
+                <!-- <div id="myCarousel" class="carousel slide">
+                    <div class="clearfix">
+                        <div id="main-carousel" class="col-12 px-0 py-3 carousel slide" data-interval="false">
+                            <div class="row mx-5">
+                                <div class="carousel-inner">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div> -->
+
+
+                <!-- <div id="carousel" class="carousel slide" data-interval="false">
                     <div class="clearfix">
                         <div id="main-carousel" class="col-12 px-0 py-3 carousel slide" data-interval="false">
                             <div class="row mx-5">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <div data-target="#carousel" data-slide-to="0" class="col-4 thumb">
+                                        <div data-target="#carousel" id="0" data-slide-to="0" class="col-4 thumb">
                                             <div class="card">
                                                 <img class="card-img-top" src="{% static 'images/image1.png' %}"
                                                     alt="Card image 1" />
@@ -65,7 +87,8 @@
                                                 <div class="card-footer">
                                                     <div class="row">
                                                         <div class="col-5">
-                                                            <button type="button" class="btn btn-dark float-end">
+                                                            <button id="0" type="button" class="btn btn-dark float-end"
+                                                                data-toggle="modal" data-target="#myModal">
                                                                 Details
                                                             </button>
                                                         </div>
@@ -81,7 +104,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div data-target="#carousel" data-slide-to="1" class="col-4 thumb">
+                                        <div data-target="#carousel" id="2" data-slide-to="2" class="col-4 thumb">
                                             <div class="card">
                                                 <img class="card-img-top" src="{% static 'images/image2.png' %}"
                                                     alt="Card image 2" />
@@ -96,7 +119,8 @@
                                                 <div class="card-footer">
                                                     <div class="row">
                                                         <div class="col-5">
-                                                            <button type="button" class="btn btn-dark float-end">
+                                                            <button id="2" type="button" class="btn btn-dark float-end"
+                                                                data-toggle="modal" data-target="#myModal">
                                                                 Details
                                                             </button>
                                                         </div>
@@ -112,7 +136,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div data-target="#carousel" data-slide-to="2" class="col-4 thumb">
+                                        <div data-target="#carousel" id="3" data-slide-to="3" class="col-4 thumb">
                                             <div class="card">
                                                 <img class="card-img-top" src="{% static 'images/image3.png' %}"
                                                     alt="Card image 3" />
@@ -124,7 +148,8 @@
                                                 <div class="card-footer">
                                                     <div class="row">
                                                         <div class="col-5">
-                                                            <button type="button" class="btn btn-dark float-end">
+                                                            <button id="3" type="button" class="btn btn-dark float-end"
+                                                                data-toggle="modal" data-target="#myModal">
                                                                 Details
                                                             </button>
                                                         </div>
@@ -140,9 +165,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><!-- /item -->
+                                    </div>
                                     <div class="carousel-item">
-                                        <div data-target="#carousel" data-slide-to="3" class="col-4 thumb">
+                                        <div data-target="#carousel" id="4" data-slide-to="4" class="col-4 thumb">
                                             <div class="card">
                                                 <img class="card-img-top" src="{% static 'images/image3.png' %}"
                                                     alt="Card image 3" />
@@ -154,7 +179,8 @@
                                                 <div class="card-footer">
                                                     <div class="row">
                                                         <div class="col-5">
-                                                            <button type="button" class="btn btn-dark float-end">
+                                                            <button id="4" type="button" class="btn btn-dark float-end"
+                                                                data-toggle="modal" data-target="#myModal">
                                                                 Details
                                                             </button>
                                                         </div>
@@ -170,7 +196,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div data-target="#carousel" data-slide-to="4" class="col-4 thumb">
+                                        <div data-target="#carousel" id="5" data-slide-to="5" class="col-4 thumb">
                                             <div class="card">
                                                 <img class="card-img-top" src="{% static 'images/image3.png' %}"
                                                     alt="Card image 3" />
@@ -182,7 +208,8 @@
                                                 <div class="card-footer">
                                                     <div class="row">
                                                         <div class="col-5">
-                                                            <button type="button" class="btn btn-dark float-end">
+                                                            <button id="5" type="button" class="btn btn-dark float-end"
+                                                                data-toggle="modal" data-target="#myModal">
                                                                 Details
                                                             </button>
                                                         </div>
@@ -198,7 +225,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div data-target="#carousel" data-slide-to="5" class="col-4 thumb">
+                                        <div data-target="#carousel" id="6" data-slide-to="6" class="col-4 thumb">
                                             <div class="card">
                                                 <img class="card-img-top" src="{% static 'images/image1.png' %}"
                                                     alt="Card image 1" />
@@ -212,7 +239,8 @@
                                                 <div class="card-footer">
                                                     <div class="row">
                                                         <div class="col-5">
-                                                            <button type="button" class="btn btn-dark float-end">
+                                                            <button id="6" type="button" class="btn btn-dark float-end"
+                                                                data-toggle="modal" data-target="#myModal">
                                                                 Details
                                                             </button>
                                                         </div>
@@ -228,8 +256,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><!-- /item -->
-                                </div><!-- /carousel-inner -->
+                                    </div>
+                                </div>
                             </div>
                             <a class="carousel-control-prev" href="#main-carousel" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -239,198 +267,251 @@
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
-                        </div> <!-- /main-carousel -->
-                    </div><!-- /clearfix -->
-                </div>
-
-
+                        </div>
+                    </div>
+                </div> -->
             </div>
         </div>
         <div class="tab-pane" id="questions-tab" role="tabpanel">
             <div class="container">
-                <!-- <div class="row mx-sm-5">
-                    <div class="col-sm-8 col-md-10 pl-0 pr-3 py-3">
-                        <div class="form-group has-search">
-                            <span class="fa fa-search form-control-feedback"></span>
-                            <input type="text" class="search-input" id="search_input_all"
-                                onkeyup="FilterkeyWord_all_table()" placeholder="Django" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-md-2 px-0 py-3">
-                        <button type="button" class="btn btn-dark float-end">Search</button>
-                    </div>
-                </div> -->
-
-
                 <div class="row mx-sm-5 mt-5">
-                <table class="table table-class" id="myTable">
-                    <thead>
-                        <tr>
-                            <th>Question</th>
-                            <th>Best Answer</th>
-                            <th>Answer</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                        </tr>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                        </tr>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                        </tr>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                        </tr>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                        </tr>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                        </tr>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                        </tr>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                        </tr>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                        </tr>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                        </tr>
-                        <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-
+                    <table class="table table-class" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>Question</th>
+                                <th>Best Answer</th>
+                                <th>Answer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                            </tr>
+                            <tr>
+                                <td>Garrett Winters</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                            </tr>
+                            <tr>
+                                <td>Ashton Cox</td>
+                                <td>Junior Technical Author</td>
+                                <td>San Francisco</td>
+                            </tr>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                            </tr>
+                            <tr>
+                                <td>Garrett Winters</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                            </tr>
+                            <tr>
+                                <td>Ashton Cox</td>
+                                <td>Junior Technical Author</td>
+                                <td>San Francisco</td>
+                            </tr>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                            </tr>
+                            <tr>
+                                <td>Garrett Winters</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                            </tr>
+                            <tr>
+                                <td>Ashton Cox</td>
+                                <td>Junior Technical Author</td>
+                                <td>San Francisco</td>
+                            </tr>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                            </tr>
+                            <tr>
+                                <td>Garrett Winters</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                            </tr>
+                            <tr>
+                                <td>Ashton Cox</td>
+                                <td>Junior Technical Author</td>
+                                <td>San Francisco</td>
+                            </tr>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                            </tr>
+                            <tr>
+                                <td>Garrett Winters</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                            </tr>
+                            <tr>
+                                <td>Ashton Cox</td>
+                                <td>Junior Technical Author</td>
+                                <td>San Francisco</td>
+                            </tr>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                            </tr>
+                            <tr>
+                                <td>Garrett Winters</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                            </tr>
+                            <tr>
+                                <td>Ashton Cox</td>
+                                <td>Junior Technical Author</td>
+                                <td>San Francisco</td>
+                            </tr>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                            </tr>
+                            <tr>
+                                <td>Garrett Winters</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                            </tr>
+                            <tr>
+                                <td>Ashton Cox</td>
+                                <td>Junior Technical Author</td>
+                                <td>San Francisco</td>
+                            </tr>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                            </tr>
+                            <tr>
+                                <td>Garrett Winters</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                            </tr>
+                            <tr>
+                                <td>Ashton Cox</td>
+                                <td>Junior Technical Author</td>
+                                <td>San Francisco</td>
+                            </tr>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                            </tr>
+                            <tr>
+                                <td>Garrett Winters</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                            </tr>
+                            <tr>
+                                <td>Ashton Cox</td>
+                                <td>Junior Technical Author</td>
+                                <td>San Francisco</td>
+                            </tr>
+                            <tr>
+                                <td>Tiger Nixon</td>
+                                <td>System Architect</td>
+                                <td>Edinburgh</td>
+                            </tr>
+                            <tr>
+                                <td>Garrett Winters</td>
+                                <td>Accountant</td>
+                                <td>Tokyo</td>
+                            </tr>
+                            <tr>
+                                <td>Ashton Cox</td>
+                                <td>Junior Technical Author</td>
+                                <td>San Francisco</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div class="tab-pane" role="tabpanel"></div>
     </div>
 </div>
-{% endblock %}
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        {% csrf_token %}
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Notes</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img class="card-img-top" src="{% static 'images/image1.png' %}" alt="Card image 1" />
+                <input type="text" class="input-header" value="Content not found" />
+                <textarea class="modal-textarea">Content not found</textarea>
+                <div class="row">
+                    <div class="col-4">Edit Ratings:
+                        <span id="rating-number"></span>
+                    </div>
+                    <div class="col-8">
+                        <!-- Rating Stars Box -->
+                        <div class='rating-stars text-center'>
+                            <ul id='stars'>
+                                <li class='star' title='Poor' data-value='1'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Fair' data-value='2'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Good' data-value='3'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Excellent' data-value='4'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='WOW!!!' data-value='5'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row hide-edit">
+                    <div class="col-6">
+                        <button type="button" id="edit-btn" class="btn btn-dark float-end">Edit</button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" id="delete-btn" class="btn btn-dark float-end">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+                <div class="row hide-save">
+                    <div class="col-6">
+                        <button type="button" id="save-btn" class="btn btn-dark float-end">Save</button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" id="cancel-btn" class="btn btn-dark float-end">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="spinner-border text-warning" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
