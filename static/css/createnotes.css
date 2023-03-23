@@ -245,3 +245,7 @@ body {
 #error p{
 	padding: 25px;
 }
+
+.link-width {
+	width: 130px;
+}

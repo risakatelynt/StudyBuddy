@@ -177,7 +177,7 @@ $(document).ready(function () {
             var count = 0;
             notesList.forEach((item, j) => {
               $(
-                '<div class="row mb-5 py-3 bg-green" id="card' +
+                '<div class="row mb-5 py-3 bg-notes" id="card' +
                   item.pk +
                   '"><img class="col-5 col-md-3 card-img-top" src="' +
                   item.fields.image +
@@ -194,18 +194,18 @@ $(document).ready(function () {
                   '<span class="size-16 pl-3">' +
                   item.fields.rank +
                   "</span></div>" +
-                  '<div class="col-12">' +
+                  '<div class="col-4">' +
                   '<button id="' +
                   item.pk +
-                  '" type="button" class="btn btn-dark float-end" data-toggle="modal" data-target="#myModal">Details</button></div>' +
+                  '" type="button" class="btn btn-dark blue-btn float-end" data-toggle="modal" data-target="#myModal">Details</button></div>' +
                   "</div></div>"
               ).appendTo(".notesList");
             });
             notesList.forEach((mainItem, index) => {
-              var stars = mainItem.rank;
+              var stars = mainItem.fields.rank;
               for (let k = 0; k < stars; k++) {
                 $('<span class="fa fa-star checked"></span>').prependTo(
-                  ".stars-rating" + index
+                  ".stars-rating" + mainItem.pk
                 );
               }
             });
@@ -377,7 +377,7 @@ $(document).ready(function () {
   // $(".float-end").click(function () {
   //   console.log(this);
   //   var id = $(this).attr("id");
-  //   var carousel = $(this).parent().closest(".bg-green");
+  //   var carousel = $(this).parent().closest(".bg-notes");
   //   if (carousel) {
   //     var imgEl = carousel.find("img")[0];
   //     var cardsEl = carousel.find(".card-text");

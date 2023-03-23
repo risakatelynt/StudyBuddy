@@ -52,15 +52,15 @@ html {
   }
 
   label.error {
-    color: #a70115b8;
+    color: red;
     margin-left: 20px;
   }
   .btn.btn-dark {
     background-color: #000;
   }
-  .btn.btn-dark:hover, .btn.btn-dark:focus {
+  /* .btn.btn-dark:hover, .btn.btn-dark:focus {
     color: #fff;
-  }
+  } */
   .btn.btn-primary:focus, .btn.btn-primary:active {
     outline: none;
   }

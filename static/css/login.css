@@ -13,9 +13,10 @@
 }
 
 .login {
-    background: #5aa17f;
+    /* background: #5aa17f; */
     /* padding-bottom: 16px;
     box-shadow: 6px 11px 10px; */
+    background: linear-gradient(#141e30, #243b55);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -176,7 +177,7 @@ textarea.input-control {
 }
 
 p.error {
-    color: #a70115b8;
+    color: red;
     margin-left: 20px;
     /* font-weight: 700; */
 }

@@ -63,7 +63,8 @@ li.nav-item {
 }
 
 .tab-content {
-    background-color: #fff;
+    background: #caffd6b5;
+    height: 100vh;
 }
 
 .search-input {
@@ -129,7 +130,7 @@ li.nav-item {
 }
 
 .checked {
-    color: #000;
+    color: #fff;
 }
 
 .size-16 {
@@ -277,13 +278,17 @@ td:last-child {
     margin-top: 12px;
     margin-bottom: 12px;
     border: 3px solid #5aa17f;
+    background: transparent;
 }
+
 .input-header {
     width: 100%;
     border: 3px solid #5aa17f;
+    background: transparent;
 }
 
-.modal-textarea:disabled, .input-header:disabled {
+.modal-textarea:disabled,
+.input-header:disabled {
     border: 1px solid #dedede;
 }
 
@@ -322,15 +327,75 @@ td:last-child {
     background-color: #caffd6b5;
 } */
 
-.bg-green:nth-child(odd) {
+/* .bg-green:nth-child(odd) {
     background-color: #f3ffcab5;
 }
 
 .bg-green:nth-child(even) {
     background-color: #caffd6b5;
+} */
+
+.bg-notes {
+    font-family: sans-serif;
+    background: linear-gradient(#141e30, #243b55);
+    color: #fff;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+.bg-notes h5 {
+    color: #fff;
 }
 
 .fa-edit {
     padding-left: 5px;
     cursor: pointer;
+}
+
+#edit-btn, #delete-btn, #cancel-btn, #save-btn, .btn-submit,  #edit-btn:hover, #edit-btn:focus, #delete-btn:hover, #delete-btn:focus, #cancel-btn:hover, #cancel-btn:focus, #save-btn:hover, #save-btn:focus, .btn-submit:hover, .btn-submit:focus{
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: .5s;
+    letter-spacing: 3px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+.btn-sm {
+    padding: 10px 20px;
+    color: #03e9f4;
+    transition: .5s;
+    letter-spacing: 3px;
+    background: black;
+    border: none;
+    margin-bottom: 10px;
+    box-shadow: none;
+}
+.btn-sm:hover, .btn-sm:focus, .blue-btn:hover, .blue-btn:focus {
+    color: #03e9f4;
+    background: black;
+    border: none;
+}
+.blue-btn {
+    color: #03e9f4;
+    font-size: 16px;
+    transition: .5s;
+    border: none;
+    float: right;
+}
+
+.modal {
+    background: linear-gradient(#141e30, #243b55);
+}
+.modal-content {
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+body {
+    background: #caffd6b5;
 }
