@@ -251,7 +251,7 @@ i.fa.fa-bolt {
     border-bottom: 1px solid #000
 }
 
-td:first-child {
+/* td:first-child {
     background-color: #ffd5dab8;
 }
 
@@ -261,7 +261,7 @@ td:nth-child(2) {
 
 td:last-child {
     background-color: #f3ffcab5;
-}
+} */
 
 .disabled {
     pointer-events: none;

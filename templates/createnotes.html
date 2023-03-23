@@ -13,7 +13,7 @@
         <button class="home-btn mb-0">Home</button>
     </a>
     <div id="main-notes" class="login-box">
-        <h2>Create Notes</h2>
+        <h3>Create Notes</h3>
         <form method="POST" id="createNoteForm" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="user-box">
@@ -34,12 +34,39 @@
                 <label>Content</label>
             </div>
             <div class="user-box form-group file-area">
-                <input type="file" name="images" id="images" required="required" />
+                <input type="file" name="image" id="images" required="required" />
                 <div class="file-content">
                     <div class="success">Image is uploaded</div>
                     <div class="default">Click here to upload an image</div>
                 </div>
                 <!-- <label for="images">Image</label> -->
+            </div>
+            <div class="row text-white">
+                <div class="col-4">Ratings:
+                    <span id="rating-number" name="rank"></span>
+                </div>
+                <div class="col-8">
+                    <!-- Rating Stars Box -->
+                    <div class='rating-stars text-center'>
+                        <ul id='stars'>
+                            <li class='star' title='Poor' data-value='1'>
+                                <i class='fa fa-star fa-fw'></i>
+                            </li>
+                            <li class='star' title='Fair' data-value='2'>
+                                <i class='fa fa-star fa-fw'></i>
+                            </li>
+                            <li class='star' title='Good' data-value='3'>
+                                <i class='fa fa-star fa-fw'></i>
+                            </li>
+                            <li class='star' title='Excellent' data-value='4'>
+                                <i class='fa fa-star fa-fw'></i>
+                            </li>
+                            <li class='star' title='WOW!!!' data-value='5'>
+                                <i class='fa fa-star fa-fw'></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <button type="submit" class="save-btn float-right" id="save-notes">Save</button>
         </form>
@@ -50,6 +77,8 @@
         <p>Would you like to create a new note?</p>
         <button type="submit" class="create-btn float-right" id="create-notes">Create</button>
     </div>
+
+    <div id="error" class="login-box text-white hide"></div>
 
 
     <!-- <form method="POST" id="createNoteForm">

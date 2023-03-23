@@ -117,16 +117,18 @@ def login(request):
 '''
 def createNote(request):
     form = NoteForm()
-    tags = Tag.objects.all()
+    # tags = Tag.objects.all()
     if request.method == 'POST':
-        tag_name = request.POST.get('tag')
-        tag, created = Tag.objects.get_or_create(name=tag_name)
+        # tag_name = request.POST.get('tag')
+        # tag, created = Tag.objects.get_or_create(name=tag_name)
 
         note = Note.objects.create(
             user=request.user,
-            tag=tag,
+            # tag=tag,
             title=request.POST.get('title'),
             content=request.POST.get('content'),
+            image= request.POST.get('image'),
+            rank = request.POST.get('rank'),
         )
         status_message = {'response' : 'success'}
         return JsonResponse(status_message)
@@ -154,22 +156,26 @@ def createNote(request):
 
 def updateNote(request, pk):
     note = Note.objects.get(id=pk)
-    form = NoteForm(instance=note)
-    tags = Tag.objects.all()
-    if request.user != note.host:
+    # form = NoteForm(instance=note)
+    # tags = Tag.objects.all()
+    if request.user != note.user:
         return HttpResponse('Your are not allowed here!!')
 
     if request.method == 'POST':
-        tag_name = request.POST.get('topic')
-        tag, created = Tag.objects.get_or_create(name=tag_name)
-        note.name = request.POST.get('name')
-        note.tag = tag
-        note.description = request.POST.get('description')
+        # tag_name = request.POST.get('topic')
+        # tag, created = Tag.objects.get_or_create(name=tag_name)
+        # note.name = request.POST.get('name')
+        # note.tag = tag
+        note.title=request.POST.get('title'),
+        note.content=request.POST.get('content'),
+        # note.image= request.POST.get('image'),
+        note.rank = request.POST.get('rank'),
         note.save()
-        return render(request, 'notes.html')
+        status_message = {'response' : 'success'}
+        return JsonResponse(status_message)
 
-    context = {'form': form, 'tags': tags, 'note': note}
-    return render(request, 'notes.html', context)
+    # context = {'form': form, 'tags': tags, 'note': note}
+    return render(request, 'notes.html')
 
 def deleteNote(request, pk):
     note = Note.objects.get(id=pk)
@@ -179,7 +185,8 @@ def deleteNote(request, pk):
 
     if request.method == 'POST':
         note.delete()
-        return render(request, 'notes.html')
+        status_message = {'response' : 'success'}
+        return JsonResponse(status_message)
     return render(request, 'notes.html', {'obj': note})
 
 def newNote(request):
@@ -279,16 +286,13 @@ def allQuestions(request):
         paginator = Paginator(all_questions, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
-        return render(request, "questions.html", {
-            'page_obj': page_obj,
-            "questions": all_questions
-        })
-        # question_json = serializers.serialize('json', all_questions)
         # return render(request, "notes.html", {
         #     'page_obj': page_obj,
-        #     "questions": all_notes
+        #     "questions": all_questions
         # })
-        # return JsonResponse( {"questions": question_json})
+        question_json = serializers.serialize('json', all_questions)
+        page_json =serializers.serialize('json', page_obj)
+        return JsonResponse( {"questions": question_json, "page_obj": page_json})
     # else: 
     #     return render(request, "questions.html")
 

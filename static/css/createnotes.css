@@ -104,7 +104,7 @@ body {
 	top: 50%;
 	left: 50%;
 	width: 400px;
-	padding: 40px;
+	padding: 16px 30px;
 	transform: translate(-50%, -50%);
 	background: rgba(0, 0, 0, .5);
 	box-sizing: border-box;
@@ -112,7 +112,7 @@ body {
 	border-radius: 10px;
 }
 
-.login-box h2 {
+.login-box h3 {
 	margin: 0 0 20px;
 	padding: 0;
 	color: #fff;
@@ -163,6 +163,7 @@ body {
 	width: 100%;
 	position: relative;
 }
+
 .file-area input[type=file] {
 	position: absolute;
 	width: 100%;
@@ -174,28 +175,73 @@ body {
 	opacity: 0;
 	cursor: pointer;
 }
+
 .file-area .file-content {
-		width: 100%;
-		padding: 10px;
-		border-bottom: 1px solid #fff;
-		color: #fff;
-		text-align: center;
-		transition: background 0.3s ease-in-out;
+	width: 100%;
+	padding: 10px;
+	border-bottom: 1px solid #fff;
+	color: #fff;
+	text-align: center;
+	transition: background 0.3s ease-in-out;
 
 }
+
 .file-area .file-content .success {
 	display: none;
 }
+
 .file-area:hover .file-content {
 	background: rgba(255, 255, 255, 0.1);
 }
-.file-area input[type=file]:focus + .file-content {
+
+.file-area input[type=file]:focus+.file-content {
 	outline: 2px solid rgba(255, 255, 255, 0.5);
 	outline: -webkit-focus-ring-color auto 5px;
 }
-.file-area input[type=file]:valid + .file-content .success {
+
+.file-area input[type=file]:valid+.file-content .success {
 	display: inline-block;
 }
-.file-area input[type=file]:valid + .file-content .default {
+
+.file-area input[type=file]:valid+.file-content .default {
 	display: none;
+}
+
+/* Rating Star Widgets Style */
+.rating-stars ul {
+	list-style-type: none;
+	padding: 0;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+.rating-stars ul>li.star {
+	display: inline-block;
+
+}
+
+/* Idle State of the stars */
+.rating-stars ul>li.star>i.fa {
+	font-size: 1.5em;
+	/* Change the size of the stars */
+	color: #ccc;
+	/* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul>li.star.hover>i.fa {
+	color: #FFCC36;
+}
+
+/* Selected state of the stars */
+.rating-stars ul>li.star.selected>i.fa {
+	color: #FF912C;
+}
+
+.text-white {
+	color: #fff;
+}
+
+#error p{
+	padding: 25px;
 }

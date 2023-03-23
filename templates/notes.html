@@ -24,7 +24,7 @@
         </li>
         <li class="nav-item disabled" role="presentation">
             <div class="nav-link disabled" id="userId" tabindex="-1" aria-disabled="true">
-                Hello, 
+                Hello,
             </div>
         </li>
     </ul>
@@ -44,499 +44,70 @@
                         <button type="button" class="btn btn-dark float-end">Search</button>
                     </div>
                 </div>
-
                 <div class="notesList"></div>
-                <!-- <div id="carousel" class="carousel slide" data-interval="false">
-                    <div class="clearfix">
-                        <div id="main-carousel" class="col-12 px-0 py-3 carousel slide" data-interval="false">
-                            <div class="row mx-5">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <div data-target="#carousel" id="0" data-slide-to="0" class="col-4 thumb">
-                                            <div class="card">
-                                                <img class="card-img-top" src="{% static 'images/image1.png' %}"
-                                                    alt="Card image 1" />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">SUBTITLE</h5>
-                                                    <p class="card-text">Django cautions</p>
-                                                    <p class="card-text">
-                                                        A brief description of the Django frameworks
-                                                    </p>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <div class="row">
-                                                        <div class="col-5">
-                                                            <button id="0" type="button" class="btn btn-dark float-end"
-                                                                data-toggle="modal" data-target="#myModal">
-                                                                Details
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-7">
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="size-16 pl-3">4.8</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div data-target="#carousel" id="2" data-slide-to="2" class="col-4 thumb">
-                                            <div class="card">
-                                                <img class="card-img-top" src="{% static 'images/image2.png' %}"
-                                                    alt="Card image 2" />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">SUBTITLE</h5>
-                                                    <p class="card-text">Introduction to Django</p>
-                                                    <p class="card-text">
-                                                        Overview of the history of Django has advantages and
-                                                        disadvantages, etc.
-                                                    </p>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <div class="row">
-                                                        <div class="col-5">
-                                                            <button id="2" type="button" class="btn btn-dark float-end"
-                                                                data-toggle="modal" data-target="#myModal">
-                                                                Details
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-7">
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="size-16 pl-3">3.9</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div data-target="#carousel" id="3" data-slide-to="3" class="col-4 thumb">
-                                            <div class="card">
-                                                <img class="card-img-top" src="{% static 'images/image3.png' %}"
-                                                    alt="Card image 3" />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">SUBTITLE</h5>
-                                                    <p class="card-text">Django's manual</p>
-                                                    <p class="card-text">Some basic teaching of Django</p>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <div class="row">
-                                                        <div class="col-5">
-                                                            <button id="3" type="button" class="btn btn-dark float-end"
-                                                                data-toggle="modal" data-target="#myModal">
-                                                                Details
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-7">
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="size-16 pl-3">3.2</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div data-target="#carousel" id="4" data-slide-to="4" class="col-4 thumb">
-                                            <div class="card">
-                                                <img class="card-img-top" src="{% static 'images/image3.png' %}"
-                                                    alt="Card image 3" />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">SUBTITLE</h5>
-                                                    <p class="card-text">Django's manual</p>
-                                                    <p class="card-text">Some basic teaching of Django</p>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <div class="row">
-                                                        <div class="col-5">
-                                                            <button id="4" type="button" class="btn btn-dark float-end"
-                                                                data-toggle="modal" data-target="#myModal">
-                                                                Details
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-7">
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="size-16 pl-3">3.2</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div data-target="#carousel" id="5" data-slide-to="5" class="col-4 thumb">
-                                            <div class="card">
-                                                <img class="card-img-top" src="{% static 'images/image3.png' %}"
-                                                    alt="Card image 3" />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">SUBTITLE</h5>
-                                                    <p class="card-text">Django's manual</p>
-                                                    <p class="card-text">Some basic teaching of Django</p>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <div class="row">
-                                                        <div class="col-5">
-                                                            <button id="5" type="button" class="btn btn-dark float-end"
-                                                                data-toggle="modal" data-target="#myModal">
-                                                                Details
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-7">
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="fa fa-star"></span>
-                                                            <span class="size-16 pl-3">3.2</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div data-target="#carousel" id="6" data-slide-to="6" class="col-4 thumb">
-                                            <div class="card">
-                                                <img class="card-img-top" src="{% static 'images/image1.png' %}"
-                                                    alt="Card image 1" />
-                                                <div class="card-body">
-                                                    <h5 class="card-title">SUBTITLE</h5>
-                                                    <p class="card-text">Django cautions</p>
-                                                    <p class="card-text">
-                                                        A brief description of the Django frameworks
-                                                    </p>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <div class="row">
-                                                        <div class="col-5">
-                                                            <button id="6" type="button" class="btn btn-dark float-end"
-                                                                data-toggle="modal" data-target="#myModal">
-                                                                Details
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-7">
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="fa fa-star checked"></span>
-                                                            <span class="size-16 pl-3">4.8</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#main-carousel" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#main-carousel" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
         <div class="tab-pane" id="questions-tab" role="tabpanel">
-            <div class="container">
-                {% if page_obj.has_other_pages %}
-                <nav>
-                    <ul class="pagination">
-                        {% if page_obj.has_previous %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page=1">First</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link"
-                                   href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                            </li>
-                        {% endif %}
-                        {% for num in page_obj.paginator.page_range %}
-                            {% if page_obj.number == num %}
-                                <li class="page-item active">
-                                    <a class="page-link" href="?page={{ num }}">{{ num }} <span class="sr-only">(current)</span></a>
-                                </li>
-                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                        {% if page_obj.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            {% endif %}
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col" class="text-center ">Id</th>
-                    <th scope="col" class="text-center ">Title</th>
-                    <th scope="col" class="text-center ">content</th>
-                    <th scope="col" class="text-center ">Date of creation</th>
-                    <th scope="col" class="text-center ">Question Asker</th>
-                    <th scope="col" class="text-center ">operate</th>
-                    <th scope="col" class="text-center ">rank</th>
-                </tr>
-                </thead>
-                <tbody id="questionBody">
-                {% for question in page_obj %}
-                    <tr>
-                        <td>{{ question.id }}</td>
-                        <td class="text-center ">{{ question.title }}</td>
-                        <td class="text-center ">{{ question.content|slice:":10" }}...</td>
-                        <td class="text-center ">{{ question.add_time }}</td>
-                        <td class="text-center ">{{ question.user_id }}</td>
-                        <td class="text-center ">
-                            <div class="row">
-                                <div class="col">
-                                    <button id="Detail" type="button" class="btn btn-primary btn-sm"
-                                            data-toggle="modal" data-target="#questionDetail"
-                                            data-question-id="{{ question.id }}">
-                                        Detail
-                                    </button>
+            <div class="modal fade" id="questionDetail" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel" id="questionDetailTitle"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="questionDetailForm">
+                                <div class="mb-3">
+                                    <label for="editor" class="form-label">Content</label>
+                                    <textarea class="form-control" id="editor" name="content"></textarea>
                                 </div>
-                                <div class="col">
-                                    <button id="Answer" type="button" class="btn btn-success btn-sm">Answer
-                                    </button>
+                                <div class="mb-3">
+                                    <label for="editor" class="form-label">Best Answer</label>
+                                    <textarea class="form-control" id="editor" name="best_answer"></textarea>
                                 </div>
-                                <div class="col">
-                                    <button id="Collect" type="button" class="btn btn-info btn-sm">Collect
-                                    </button>
+                                <div class="mb-3">
+                                    <label for="rating" class="form-label">Rating</label>
+                                    <input type="range" class="form-range" min="0" max="5" id="rating" name="rating">
+
+                                    </input>
                                 </div>
-                            </div>
-                        </td>
-                        <td class="text-center ">{{ question.rank }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="modal fade" id="questionDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel" id="questionDetailTitle"></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="questionDetailForm">
-                            <div class="mb-3">
-                                <label for="editor" class="form-label">Content</label>
-                                <textarea class="form-control" id="editor" name="content"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="editor" class="form-label">Best Answer</label>
-                                <textarea class="form-control" id="editor" name="best_answer"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="rating" class="form-label">Rating</label>
-                                <input type="range" class="form-range" min="0" max="5" id="rating" name="rating">
-    
-                                </input>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-    
-    
-    
 
 
 
 
 
-                <div class="row mx-sm-5 mt-5">
-                    <table class="table table-class" id="myTable">
-                        <thead>
-                            <tr>
-                                <th>Question</th>
-                                <th>Best Answer</th>
-                                <th>Answer</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                            </tr>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+
+
+
+
+            <div class="row mx-sm-5 mt-5">
+                <table class="table table-class" id="myTable">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center ">Id</th>
+                            <th scope="col" class="text-center ">Title</th>
+                            <th scope="col" class="text-center ">content</th>
+                            <th scope="col" class="text-center ">Date of creation</th>
+                            <th scope="col" class="text-center ">Question Asker</th>
+                            <th scope="col" class="text-center ">operate</th>
+                            <th scope="col" class="text-center ">rank</th>
+                        </tr>
+                    </thead>
+                    <tbody id="question-body">
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="tab-pane" role="tabpanel"></div>
     </div>
+    <div class="tab-pane" role="tabpanel"></div>
+</div>
 </div>
 
 <!-- Modal -->
@@ -550,7 +121,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <img class="card-img-top" src="{% static 'images/image1.png' %}" alt="Card image 1" />
+                <img id="modal-img" class="card-img-top" src="{% static 'images/image1.png' %}" alt="Card image 1" />
                 <input type="text" class="input-header" value="Content not found" />
                 <textarea class="modal-textarea">Content not found</textarea>
                 <div class="row">
@@ -609,50 +180,5 @@
         </div>
     </div>
 </div>
-
-
-
-
-{% comment %} <script>
-   
-    $(document).ready(function () {
-        const btnDetail = document.getElementById("Detail");
-        const btnAnswer = document.getElementById("Answer");
-        const btnCollect = document.getElementById("Collect");
-    
-    btnDetail.addEventListener("click", function () {
-      
-            $('#questionBody').on('click', '#Detail', function () {
-                // 获取问题的ID
-                var question_id = $(this).data('question-id');
-
-                // 发送Ajax请求获取问题的详细信息
-                $.ajax({
-                    url: '/questionDetail?' + 'question_id=' + question_id,
-                    type: 'GET',
-                    success: function (data) {
-
-                        // 将问题的详细信息显示在模态框中
-                        $('textarea[name="content"]').val(data);
-                        $('input[name="rating"]').val(data);
-                        console.log(data);
-                    }
-                });
-            });
-        });
-        });
-   
-
-    btnAnswer.addEventListener("click", function () {
-        // 在这里添加按钮2的事件处理代码
-        console.log("Button 2 clicked!");
-    });
-
-    btnCollect.addEventListener("click", function () {
-        // 在这里添加按钮2的事件处理代码
-        console.log("Button 2 clicked!");
-    });
-
-</script> {% endcomment %}
 
 {% endblock %}

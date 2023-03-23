@@ -71,7 +71,7 @@ WSGI_APPLICATION = "knowledge_sharing_app.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "shareNote",
+        'NAME': "sharenotes",
         'USER': "root",
         'PASSWORD': "angular123",
         'HOST': "127.0.0.1"

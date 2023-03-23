@@ -172,51 +172,56 @@ $(document).ready(function () {
       // handle a successful response
       success: function (json) {
         if (json.page_obj) {
-          console.log(json);
           notesList = JSON.parse(json.page_obj);
-          var count = 0;
-          notesList.forEach((item, j) => {
-            $(
-              '<div class="row mb-5 py-3 bg-green" id="card' +
-                item.pk +
-                '"><img class="col-5 col-md-3 card-img-top" src="' +
-                item.fields.image +
-                '"><div class="col-7 col-md-9 px-0"><div id="edit' +
-                item.pk +
-                '"><h5 class="col-12">' +
-                item.fields.title +
-                '</h5><p class="col-12 card-text">' +
-                item.fields.content +
-                "</p></div>" +
-                '<div class="col-12 my-3 stars-rating' +
-                item.pk +
-                '">' +
-                '<span class="size-16 pl-3">' +
-                item.fields.rank +
-                "</span></div>" +
-                '<div class="col-12">' +
-                '<button id="' +
-                item.pk +
-                '" type="button" class="btn btn-dark float-end" data-toggle="modal" data-target="#myModal">Details</button></div>' +
-                "</div></div>"
-            ).appendTo(".notesList");
-          });
-          notesList.forEach((mainItem, index) => {
-            var stars = mainItem.rank;
-            for (let k = 0; k < stars; k++) {
-              $('<span class="fa fa-star checked"></span>').prependTo(
-                ".stars-rating" + index
-              );
+          if (notesList && notesList.length > 0) {
+            var count = 0;
+            notesList.forEach((item, j) => {
+              $(
+                '<div class="row mb-5 py-3 bg-green" id="card' +
+                  item.pk +
+                  '"><img class="col-5 col-md-3 card-img-top" src="' +
+                  item.fields.image +
+                  '"><div class="col-7 col-md-9 px-0"><div id="edit' +
+                  item.pk +
+                  '"><h5 class="col-12">' +
+                  item.fields.title +
+                  '</h5><p class="col-12 card-text">' +
+                  item.fields.content +
+                  "</p></div>" +
+                  '<div class="col-12 my-3 stars-rating' +
+                  item.pk +
+                  '">' +
+                  '<span class="size-16 pl-3">' +
+                  item.fields.rank +
+                  "</span></div>" +
+                  '<div class="col-12">' +
+                  '<button id="' +
+                  item.pk +
+                  '" type="button" class="btn btn-dark float-end" data-toggle="modal" data-target="#myModal">Details</button></div>' +
+                  "</div></div>"
+              ).appendTo(".notesList");
+            });
+            notesList.forEach((mainItem, index) => {
+              var stars = mainItem.rank;
+              for (let k = 0; k < stars; k++) {
+                $('<span class="fa fa-star checked"></span>').prependTo(
+                  ".stars-rating" + index
+                );
+              }
+            });
+            $(".carousel-item").first().addClass("active");
+            $(".carousel-indicators > li").first().addClass("active");
+            $("#carousel-example-generic").carousel();
+            for (let k = 0; k < notesList.length; k++) {
+              $(".hide-save" + notesList[k].pk).hide();
             }
-          });
-          $(".carousel-item").first().addClass("active");
-          $(".carousel-indicators > li").first().addClass("active");
-          $("#carousel-example-generic").carousel();
-          for (let k = 0; k < notesList.length; k++) {
-            $(".hide-save" + notesList[k].pk).hide();
+          } else {
+            console.log(json);
+            $(".notesList").text("No notes found!");
           }
         } else {
           console.log(json);
+          $(".notesList").text("No notes found!");
         }
         setTimeout(function () {
           $(".spinner-border").hide();
@@ -233,16 +238,72 @@ $(document).ready(function () {
         }, 1000);
       },
     });
-
     $.ajax({
       url: "http://127.0.0.1:8000/questions/",
       type: "GET",
-    
+
       // handle a successful response
       success: function (json) {
         if (json.questions) {
           console.log(json);
-          var questionsList = JSON.parse(json.questions);
+          var questionList = JSON.parse(json.questions);
+          if (questionList && questionList.length > 0) {
+            questionList.forEach((question, j) => {
+              $(
+                '<tr role="row" class="odd"><td>' +
+                  question.pk +
+                  '</td><td class="text-center ">' +
+                  question.fields.title +
+                  " </td>" +
+                  '<td class="text-center">' +
+                  question.fields.content +
+                  '</td><td class="text-center ">' +
+                  question.fields.add_time +
+                  " </td>" +
+                  '<td class="text-center">' +
+                  question.fields.user +
+                  ' </td><td class="text-center ">' +
+                  '<div class="row"><div class="col"><button id="Detail" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#questionDetail" data-question-id="' +
+                  question.fields.id +
+                  ' ">Detail</button></div>' +
+                  '<div class="col"><button id="Answer" type="button" class="btn btn-success btn-sm">Answer</button></div>' +
+                  '<div class="col"><button id="Collect" type="button" class="btn btn-info btn-sm">Collect</button></div>' +
+                  '</div></td><td class="text-center ">' +
+                  question.fields.rank +
+                  " </td></tr>"
+              ).appendTo("#question-body");
+            });
+            $("#myTable").dataTable({
+              fnDrawCallback: function (oSettings) {
+                var previousPageEl =
+                  document.querySelector("#myTable_previous");
+                previousPageEl.innerHTML = "";
+                $(".paginate_button.previous").append(
+                  '<i class="fa fa-angle-left"></i>'
+                );
+                var nextPageEl = document.querySelector("#myTable_next");
+                nextPageEl.innerHTML = "";
+                $(".paginate_button.next").append(
+                  '<i class="fa fa-angle-right"></i>'
+                );
+
+                $(".paginate_button").append(
+                  '<i class="fa fa-bolt" aria-hidden="true"></i>'
+                );
+
+                var queue = document.getElementsByClassName("previous");
+                var elements = queue[0].getElementsByTagName("i");
+                queue[0].removeChild(elements[1]);
+                var queue = document.getElementsByClassName("next");
+                var elements = queue[0].getElementsByTagName("i");
+                queue[0].removeChild(elements[1]);
+              },
+            });
+            $("#myTable_info").hide();
+            $("#myTable_filter label").append(
+              '<span class="fa fa-search form-control-feedback"></span>'
+            );
+          }
         } else {
           console.log(json);
         }
@@ -285,32 +346,32 @@ $(document).ready(function () {
   });
 
   // questions table
-  $("#myTable").dataTable({
-    fnDrawCallback: function (oSettings) {
-      var previousPageEl = document.querySelector("#myTable_previous");
-      previousPageEl.innerHTML = "";
-      $(".paginate_button.previous").append('<i class="fa fa-angle-left"></i>');
-      var nextPageEl = document.querySelector("#myTable_next");
-      nextPageEl.innerHTML = "";
-      $(".paginate_button.next").append('<i class="fa fa-angle-right"></i>');
+  // $("#myTable").dataTable({
+  //   fnDrawCallback: function (oSettings) {
+  //     var previousPageEl = document.querySelector("#myTable_previous");
+  //     previousPageEl.innerHTML = "";
+  //     $(".paginate_button.previous").append('<i class="fa fa-angle-left"></i>');
+  //     var nextPageEl = document.querySelector("#myTable_next");
+  //     nextPageEl.innerHTML = "";
+  //     $(".paginate_button.next").append('<i class="fa fa-angle-right"></i>');
 
-      $(".paginate_button").append(
-        '<i class="fa fa-bolt" aria-hidden="true"></i>'
-      );
+  //     $(".paginate_button").append(
+  //       '<i class="fa fa-bolt" aria-hidden="true"></i>'
+  //     );
 
-      var queue = document.getElementsByClassName("previous");
-      var elements = queue[0].getElementsByTagName("i");
-      queue[0].removeChild(elements[1]);
-      var queue = document.getElementsByClassName("next");
-      var elements = queue[0].getElementsByTagName("i");
-      queue[0].removeChild(elements[1]);
-    },
-  });
+  //     var queue = document.getElementsByClassName("previous");
+  //     var elements = queue[0].getElementsByTagName("i");
+  //     queue[0].removeChild(elements[1]);
+  //     var queue = document.getElementsByClassName("next");
+  //     var elements = queue[0].getElementsByTagName("i");
+  //     queue[0].removeChild(elements[1]);
+  //   },
+  // });
 
-  $("#myTable_info").hide();
-  $("#myTable_filter label").append(
-    '<span class="fa fa-search form-control-feedback"></span>'
-  );
+  // $("#myTable_info").hide();
+  // $("#myTable_filter label").append(
+  //   '<span class="fa fa-search form-control-feedback"></span>'
+  // );
 
   // on click of details button of notes page
   // $(".float-end").click(function () {
@@ -372,14 +433,15 @@ $(document).ready(function () {
     //     }, 1000);
     //   },
     // });
-    $("#myModal img").attr("src", notesList[id - 1].fields.image);
-    $(".input-header").val(notesList[id - 1].fields.title);
-    $(".modal-textarea").text(notesList[id - 1].fields.content);
+    var index = notesList.findIndex((item) => item.pk == id);
+    $("#myModal img").attr("src", notesList[index].fields.image);
+    $(".input-header").val(notesList[index].fields.title);
+    $(".modal-textarea").text(notesList[index].fields.content);
     var stars = $("#stars li.star");
     for (i = 0; i < stars.length; i++) {
       $(stars[i]).removeClass("selected");
     }
-    for (i = 0; i < notesList[id - 1].fields.rank; i++) {
+    for (i = 0; i < notesList[index].fields.rank; i++) {
       $(stars[i]).addClass("selected");
     }
   });
@@ -392,57 +454,58 @@ $(document).ready(function () {
   });
   $("#save-btn").click(function () {
     $(".spinner-border").show();
-    notesList[id].title = $(".input-header").val();
-    notesList[id].content = $(".modal-textarea").val();
+    var index = notesList.findIndex((item) => item.pk == id);
+    notesList[index].fields.title = $(".input-header").val();
+    notesList[index].fields.content = $(".modal-textarea").val();
+    // notesList[index].rank = $("#rating-number").text();
     $(".input-header").attr("disabled", true);
     $(".modal-textarea").attr("disabled", true);
     $("#stars").addClass("disabled");
     $(".hide-edit").show();
     $(".hide-save").hide();
+    notesList[index].fields.rank = parseInt($("#rating-number").text(), 10);
+    var m = notesList[index].fields.rank;
+    $.ajaxSetup({
+      headers: {
+        "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
+          .value,
+      },
+    });
+    $.ajax({
+      url: `http://127.0.0.1:8000/updatenotes/${id}`,
+      type: "POST",
+      data: {
+        title: notesList[index].fields.title,
+        content: notesList[index].fields.content,
+        rank: m,
+      },
+      dataType: "json",
+      // handle a successful response
+      success: function (json) {
+        if (json.response && json.response == "success") {
+          console.log(json);
+        }
+        setTimeout(function () {
+          $(".spinner-border").hide();
+          $(".container").removeClass("opacity");
+        }, 2000);
+      },
 
-    // $.ajaxSetup({
-    //   headers: {
-    //     "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
-    //       .value,
-    //   },
-    // });
-    // $.ajax({
-    //   url: `http://127.0.0.1:8000/updatenotes/${id}`,
-    //   type: "POST",
-    //   data: {
-    //     id: id,
-    //     topic: notesList[id].title,
-    //     name: "",
-    //     description: notesList[id].content
-    //   },
-    //   dataType: "json",
-    //   // handle a successful response
-    //   success: function (json) {
-    //     if (json.response && json.response == "success") {
-    //       console.log(json);
-    //     } else if (json.response && json.response.message) {
-    //       console.log(json.response.message);
-    //     }
-    setTimeout(function () {
-      $(".spinner-border").hide();
-      $(".container").removeClass("opacity");
-    }, 2000);
-    //   },
-
-    //   // handle a non-successful response
-    //   error: function (xhr, errmsg, err) {
-    //     console.log(errmsg);
-    //     setTimeout(function () {
-    //       $(".spinner-border").hide();
-    //       $(".container").removeClass("opacity");
-    //     }, 1000);
-    //   },
-    // });
+      // handle a non-successful response
+      error: function (xhr, errmsg, err) {
+        console.log(errmsg);
+        setTimeout(function () {
+          $(".spinner-border").hide();
+          $(".container").removeClass("opacity");
+        }, 1000);
+      },
+    });
   });
   $("#cancel-btn").on("click", function () {
-    $(".input-header").val(notesList[id].title);
-    $(".modal-textarea").val(notesList[id].content);
-    $("#rating-number").text(notesList[id].rank);
+    var index = notesList.findIndex((item) => item.pk == id);
+    $(".input-header").val(notesList[index].fields.title);
+    $(".modal-textarea").val(notesList[index].fields.content);
+    $("#rating-number").text(notesList[index].fields.rank);
     $(".hide-edit").show();
     $(".hide-save").hide();
     $(".input-header").attr("disabled", true);
@@ -451,10 +514,46 @@ $(document).ready(function () {
     for (i = 0; i < stars.length; i++) {
       $(stars[i]).removeClass("selected");
     }
-    for (i = 0; i < notesList[id].rank; i++) {
+    for (i = 0; i < notesList[index].rank; i++) {
       $(stars[i]).addClass("selected");
     }
     $("#stars").addClass("disabled");
+  });
+
+  $("#delete-btn").click(function (event) {
+    $(".spinner-border").show();
+    $.ajaxSetup({
+      headers: {
+        "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
+          .value,
+      },
+    });
+    $.ajax({
+      url: `http://127.0.0.1:8000/deletenotes/${id}`,
+      type: "POST",
+      data: {},
+      dataType: "json",
+      // handle a successful response
+      success: function (json) {
+        if (json.response && json.response == "success") {
+          window.location.href = "http://127.0.0.1:8000/notes/";
+        }
+        setTimeout(function () {
+          $(".spinner-border").hide();
+          $(".container").removeClass("opacity");
+        }, 2000);
+      },
+
+      // handle a non-successful response
+      error: function (xhr, errmsg, err) {
+        console.log(errmsg);
+        setTimeout(function () {
+          $(".spinner-border").hide();
+          $(".container").removeClass("opacity");
+        }, 1000);
+      },
+    });
+    event.preventDefault();
   });
 
   $(".close").click(function () {
@@ -507,12 +606,14 @@ $(document).ready(function () {
     $("#rating-number").text(newRatingValue);
   });
 
+  // create a new note
   $("#createNoteForm").submit(function (event) {
     $(".spinner-border").show();
     var title = $("#notes-title").val();
     var tag = $("#notes-tag").val();
     var content = $("#notes-content").val();
-
+    var image = $("#images").val();
+    var rating = $("#rating-number").text();
     $("#main-notes").hide();
     $.ajaxSetup({
       headers: {
@@ -521,24 +622,27 @@ $(document).ready(function () {
       },
     });
     $.ajax({
-      url: "",
+      url: "http://127.0.0.1:8000/createnotes/",
       type: "POST",
       data: {
         title: title,
-        tag: tag,
         content: content,
+        image: image,
+        rank: rating,
       },
       dataType: "json",
       // handle a successful response
       success: function (json) {
         if (json.response && json.response == "success") {
-          console.log(json);
+          document.getElementById("createNoteForm").reset();
+          $("#stars li").removeClass("selected");
         } else if (json.response && json.response.message) {
           console.log(json.response.message);
         }
         setTimeout(function () {
           $(".spinner-border").hide();
           $(".container").removeClass("opacity");
+          $("#success").removeClass("hide");
           $("#success").show();
         }, 2000);
       },
@@ -549,6 +653,9 @@ $(document).ready(function () {
         setTimeout(function () {
           $(".spinner-border").hide();
           $(".container").removeClass("opacity");
+          $("#error").removeClass("hide");
+          $("#error").empty();
+          $("<p>Error, Please try again.</p>").appendTo("#error");
         }, 1000);
       },
     });
@@ -559,25 +666,20 @@ $(document).ready(function () {
     $("#success").hide();
   });
 
-
-
-  $('#questionBody').on('click', '#Detail', function () {
+  $("#questionBody").on("click", "#Detail", function () {
     // 获取问题的ID
-    var question_id = $(this).data('question-id');
+    var question_id = $(this).data("question-id");
 
     // 发送Ajax请求获取问题的详细信息
     $.ajax({
-        url: '/questionDetail?' + 'question_id=' + question_id,
-        type: 'GET',
-        success: function (data) {
-
-            // 将问题的详细信息显示在模态框中
-            $('textarea[name="content"]').val(data);
-            $('input[name="rating"]').val(data);
-            console.log(data);
-        }
+      url: "/questionDetail?" + "question_id=" + question_id,
+      type: "GET",
+      success: function (data) {
+        // 将问题的详细信息显示在模态框中
+        $('textarea[name="content"]').val(data);
+        $('input[name="rating"]').val(data);
+        console.log(data);
+      },
     });
-});
-
-  
+  });
 });
