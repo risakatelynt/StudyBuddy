@@ -14,10 +14,10 @@ urlpatterns = [
     path('note/', views.notes_lists, name="notes_lists"),
     path('deletenotes/<str:pk>', views.deleteNote, name="deletenotes"),
     # path('note/<str:pk>', views.noteDetail, name="noteDetail"),
-    path('updatenotes/<str:pk>', views.updateNote, name="updatenotes"),
+    path('updatenotes/<int:pk>', views.updateNote, name="updatenotes"),
     path('register/', views.register, name="register"),
     path('questions/', views.allQuestions, name="allQuestions"),
-    path('showquestion/', views.questionDetail, name="questionDetail"),
+    path('questionDetail/<str:pk>', views.questionDetail, name="questionDetail"),
    
     # path('notes/create/', views.createNote, name="create-note"),
     # path('notes/<str:pk>/update/', views.updateNote, name="update-note"),

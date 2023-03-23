@@ -166,10 +166,10 @@ def updateNote(request, pk):
         # tag, created = Tag.objects.get_or_create(name=tag_name)
         # note.name = request.POST.get('name')
         # note.tag = tag
-        note.title=request.POST.get('title'),
-        note.content=request.POST.get('content'),
+        note.title=request.POST.get('title')
+        note.content=request.POST.get('content')
         # note.image= request.POST.get('image'),
-        note.rank = request.POST.get('rank'),
+        note.rank = request.POST.get('rank')
         note.save()
         status_message = {'response' : 'success'}
         return JsonResponse(status_message)
@@ -183,7 +183,7 @@ def deleteNote(request, pk):
     if request.user != note.user:
         return HttpResponse('Your are not allowed here!!')
 
-    if request.method == 'POST':
+    if request.method == 'DELETE':
         note.delete()
         status_message = {'response' : 'success'}
         return JsonResponse(status_message)
@@ -297,10 +297,10 @@ def allQuestions(request):
     #     return render(request, "questions.html")
 
 # 点击显示问题细节内容/Click to show details of the problem
-def questionDetail(request):
+def questionDetail(request, questionId):
     if request.method == "GET":
-        questionId = request.GET.get('question_id')
-        print("get id=" + questionId)
+        # questionId = request.GET.get('question_id')
+        # print("get id=" + questionId)
         question = Question.objects.get(pk=questionId)
         answers = Answer.objects.filter(question_id=questionId)
         max = -1

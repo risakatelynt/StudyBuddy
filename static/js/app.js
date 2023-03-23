@@ -264,11 +264,15 @@ $(document).ready(function () {
                   '<td class="text-center">' +
                   question.fields.user +
                   ' </td><td class="text-center ">' +
-                  '<div class="row"><div class="col"><button id="Detail" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#questionDetail" id="question' +
-                  j +
-                  ' ">Detail</button></div>' +
-                  '<div class="col"><button id="Answer" type="button" class="btn btn-success btn-sm">Answer</button></div>' +
-                  '<div class="col"><button id="Collect" type="button" class="btn btn-info btn-sm">Collect</button></div>' +
+                  '<div class="row"><div class="col"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#questionDetail" id="Detail-' +
+                  question.pk +
+                  ' ">Details</button></div>' +
+                  '<div class="col"><button id="Answer-' +
+                  question.pk +
+                  '" type="button" class="btn btn-success btn-sm">Answer</button></div>' +
+                  '<div class="col"><button id="Collect-' +
+                  question.pk +
+                  '" type="button" class="btn btn-info btn-sm">Collect</button></div>' +
                   '</div></td><td class="text-center ">' +
                   question.fields.rank +
                   " </td></tr>"
@@ -342,62 +346,9 @@ $(document).ready(function () {
   });
 
   $("#notes-li").click(function () {
-    // window.history.replaceState(null, null,"http://127.0.0.1:8000/newnote/");
     window.location.href = "http://127.0.0.1:8000/createnotes/";
   });
 
-  // questions table
-  // $("#myTable").dataTable({
-  //   fnDrawCallback: function (oSettings) {
-  //     var previousPageEl = document.querySelector("#myTable_previous");
-  //     previousPageEl.innerHTML = "";
-  //     $(".paginate_button.previous").append('<i class="fa fa-angle-left"></i>');
-  //     var nextPageEl = document.querySelector("#myTable_next");
-  //     nextPageEl.innerHTML = "";
-  //     $(".paginate_button.next").append('<i class="fa fa-angle-right"></i>');
-
-  //     $(".paginate_button").append(
-  //       '<i class="fa fa-bolt" aria-hidden="true"></i>'
-  //     );
-
-  //     var queue = document.getElementsByClassName("previous");
-  //     var elements = queue[0].getElementsByTagName("i");
-  //     queue[0].removeChild(elements[1]);
-  //     var queue = document.getElementsByClassName("next");
-  //     var elements = queue[0].getElementsByTagName("i");
-  //     queue[0].removeChild(elements[1]);
-  //   },
-  // });
-
-  // $("#myTable_info").hide();
-  // $("#myTable_filter label").append(
-  //   '<span class="fa fa-search form-control-feedback"></span>'
-  // );
-
-  // on click of details button of notes page
-  // $(".float-end").click(function () {
-  //   console.log(this);
-  //   var id = $(this).attr("id");
-  //   var carousel = $(this).parent().closest(".bg-notes");
-  //   if (carousel) {
-  //     var imgEl = carousel.find("img")[0];
-  //     var cardsEl = carousel.find(".card-text");
-  //     $("#myModal img").attr("src", imgEl.src);
-  //     var headerText = cardsEl[0].innerHTML;
-  //     headerText = headerText
-  //       .replace("\n", "")
-  //       .replace(/\s{2,}/g, " ")
-  //       .trim();
-  //     var contentText = cardsEl[1].innerHTML;
-  //     contentText = contentText
-  //       .replace("\n", "")
-  //       .replace(/\s{2,}/g, " ")
-  //       .trim();
-  //     $(".modal-textarea").text(headerText);
-  //     $(".modal-textarea").append("\n");
-  //     $(".modal-textarea").append(contentText);
-  //   }
-  // });
   var ratingValue = $("#rating-number").val();
   $(".modal-textarea").attr("disabled", true);
   $(".input-header").attr("disabled", true);
@@ -408,36 +359,11 @@ $(document).ready(function () {
   $(".notesList").on("click", ".float-end", function () {
     textareaData = $(".modal-textarea").val();
     id = $(this).attr("id");
-    // $.ajax({
-    //   url: `http://127.0.0.1:8000/note/${id}`,
-    //   type: "GET",
-    //   dataType: "json",
-    //   // handle a successful response
-    //   success: function (json) {
-    //     if (json.response && json.response == "success") {
-    //       console.log(json);
-    //     } else if (json.response && json.response.message) {
-    //       console.log(json.response.message);
-    //     }
-    //     setTimeout(function () {
-    //       $(".spinner-border").hide();
-    //       $(".container").removeClass("opacity");
-    //     }, 2000);
-    //   },
-
-    //   // handle a non-successful response
-    //   error: function (xhr, errmsg, err) {
-    //     console.log(errmsg);
-    //     setTimeout(function () {
-    //       $(".spinner-border").hide();
-    //       $(".container").removeClass("opacity");
-    //     }, 1000);
-    //   },
-    // });
     var index = notesList.findIndex((item) => item.pk == id);
     $("#myModal img").attr("src", notesList[index].fields.image);
     $(".input-header").val(notesList[index].fields.title);
     $(".modal-textarea").text(notesList[index].fields.content);
+    $("#rating-number").text(notesList[index].fields.rank);
     var stars = $("#stars li.star");
     for (i = 0; i < stars.length; i++) {
       $(stars[i]).removeClass("selected");
@@ -458,14 +384,14 @@ $(document).ready(function () {
     var index = notesList.findIndex((item) => item.pk == id);
     notesList[index].fields.title = $(".input-header").val();
     notesList[index].fields.content = $(".modal-textarea").val();
-    // notesList[index].rank = $("#rating-number").text();
     $(".input-header").attr("disabled", true);
     $(".modal-textarea").attr("disabled", true);
     $("#stars").addClass("disabled");
     $(".hide-edit").show();
     $(".hide-save").hide();
-    notesList[index].fields.rank = parseInt($("#rating-number").text(), 10);
-    var m = notesList[index].fields.rank;
+    var textVal = $("#rating-number").text();
+    notesList[index].fields.rank = parseInt(textVal, 10);
+    var rank = notesList[index].fields.rank;
     $.ajaxSetup({
       headers: {
         "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
@@ -478,13 +404,14 @@ $(document).ready(function () {
       data: {
         title: notesList[index].fields.title,
         content: notesList[index].fields.content,
-        rank: m,
+        rank: rank,
       },
       dataType: "json",
       // handle a successful response
       success: function (json) {
         if (json.response && json.response == "success") {
-          console.log(json);
+          $('#myModal').modal('hide');
+          window.location.href = "http://127.0.0.1:8000/notes/";
         }
         setTimeout(function () {
           $(".spinner-border").hide();
@@ -531,7 +458,7 @@ $(document).ready(function () {
     });
     $.ajax({
       url: `http://127.0.0.1:8000/deletenotes/${id}`,
-      type: "POST",
+      type: "DELETE",
       data: {},
       dataType: "json",
       // handle a successful response
@@ -557,9 +484,9 @@ $(document).ready(function () {
     event.preventDefault();
   });
 
-  $(".close").click(function () {
-    console.log("dsfas");
-  });
+  // $(".close").click(function () {
+  //   console.log("dsfas");
+  // });
 
   $("#stars").addClass("disabled");
   $("#stars li")
@@ -667,7 +594,7 @@ $(document).ready(function () {
     $("#success").hide();
   });
 
-  $("#questionBody").on("click", "#Detail", function () {
+  $("#question-body").on("click", "#Detail", function () {
     // 获取问题的ID
     var question_id = $(this).data("question-id");
 
@@ -683,4 +610,25 @@ $(document).ready(function () {
       },
     });
   });
+});
+
+document.addEventListener("click", function (e) {
+  const target = e.target.closest(".btn-sm"); // Or any other selector.
+
+  if (target) {
+    // Do something with `target`.
+    var question_id = target.id.split("-");
+
+    // 发送Ajax请求获取问题的详细信息
+    $.ajax({
+      url: "/questionDetail/" + question_id[1],
+      type: "GET",
+      success: function (data) {
+        // 将问题的详细信息显示在模态框中
+        $('textarea[name="content"]').val(data);
+        $('input[name="rating"]').val(data);
+        console.log(data);
+      },
+    });
+  }
 });
