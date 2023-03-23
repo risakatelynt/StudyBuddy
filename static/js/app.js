@@ -176,6 +176,8 @@ $(document).ready(function () {
           if (notesList && notesList.length > 0) {
             var count = 0;
             notesList.forEach((item, j) => {
+              var splitVal = item.fields.image.split("\\");
+              item.fields.image = "../static/images/" + splitVal[2];
               $(
                 '<div class="row mb-5 py-3 bg-notes" id="card' +
                   item.pk +
@@ -245,7 +247,6 @@ $(document).ready(function () {
       // handle a successful response
       success: function (json) {
         if (json.questions) {
-          console.log(json);
           var questionList = JSON.parse(json.questions);
           if (questionList && questionList.length > 0) {
             questionList.forEach((question, j) => {
