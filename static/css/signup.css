@@ -112,6 +112,8 @@ textarea.input-control {
     border: 1px solid #fbceb5 !important;
     color: #000 !important;
     border-radius: 40px;
+    width: 320px;
+    height: 50px;
 }
 
 .btn.btn-primary:hover {
@@ -155,9 +157,8 @@ textarea.input-control {
 
 #toggle-password, #toggle-reenter-password {
     position: absolute;
-    top: 35%;
-    right: 15px;
-    transform: translateY(-50%);
+    top: 30%;
+    right: 30px;
     cursor: pointer;
     color: #000;
 }
@@ -166,4 +167,7 @@ p.error{
     color: #a70115b8;
     margin-left: 20px;
     /* font-weight: 700; */
+}
+.text-center {
+    text-align: center;
 }

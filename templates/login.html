@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block title_block %} 
+{% extends 'base.html' %} {% load static %} {% block title_block %}
 Login
 {%endblock %} {% block body_block %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
@@ -8,44 +8,28 @@ Login
     <div class="spinner-border text-warning" role="status">
       <span class="sr-only">Loading...</span>
     </div>
-    <div class="container login opacity">
+    <div class="login content opacity">
       <div class="row justify-content-center">
-        <div class="col-md-6 text-center mt-3 mb-3">
+        <div class="col-12 text-center mt-3 mb-3">
           <h2 class="heading-section">Login</h2>
         </div>
       </div>
       <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-6">
+        <div class="col-12">
           <div class="login-wrap p-0">
             <form id="login-form" method="post">
               {% csrf_token %}
               <div class="form-group">
-                <input
-                  type="text"
-                  class="input-control"
-                  placeholder="Username"
-                  id="username"
-                  name="username"
-                />
+                <input type="text" class="input-control" placeholder="Username" id="username" name="username" />
               </div>
               <div class="form-group">
-                <input
-                  id="password"
-                  class="input-control"
-                  type="password"
-                  placeholder="Password"
-                  id="password"
-                  name="password"
-                />
+                <input id="password" class="input-control" type="password" placeholder="Password" id="password"
+                  name="password" />
                 <i class="fa fa-eye-slash" id="toggle-password"></i>
                 <p id="results" class="my-1 error"></p>
               </div>
               <div class="form-group">
-                <button
-                  type="submit"
-                  id="login-button"
-                  class="input-control btn btn-primary submit px-3 mb-2"
-                >
+                <button type="submit" id="login-button" class="input-control btn btn-primary submit px-3 mb-2">
                   Login
                 </button>
               </div>

@@ -1,0 +1,201 @@
+.container {
+	margin: 50px auto;
+	width: 80%;
+	max-width: 1200px;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	border-bottom: 1px solid #ccc;
+}
+
+.title {
+	width: 100%;
+	padding: 10px;
+	font-size: 24px;
+	border: none;
+	border-bottom: 2px solid #ccc;
+	outline: none;
+}
+
+.tags {
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+}
+
+.tag-input {
+	width: 100%;
+	padding: 5px;
+	font-size: 16px;
+	border: none;
+	border-bottom: 2px solid #ccc;
+	outline: none;
+}
+
+.tag-examples {
+	display: flex;
+	flex-wrap: wrap;
+	/* margin-left: 10px; */
+}
+
+.tag {
+	display: inline-block;
+	padding: 5px 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	border-radius: 20px;
+	background-color: #eee;
+	font-size: 10px;
+}
+
+.editor {
+	/* padding: 30px;
+	min-height: 400px; */
+	width: 100%;
+	font-size: 16px;
+}
+
+/* .home-btn {
+	display: inline-block;
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+	margin: 20px;
+} */
+
+.save-btn,
+.home-btn,
+.create-btn {
+	padding: 10px 20px;
+	color: #03e9f4;
+	font-size: 16px;
+	text-transform: uppercase;
+	transition: .5s;
+	letter-spacing: 3px;
+	background: none;
+	border: none;
+}
+
+/* .home-btn {
+	background-color: #f3ffcab5;
+} */
+
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: linear-gradient(#141e30, #243b55);
+}
+
+.hide {
+	visibility: hidden;
+}
+
+.login-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 400px;
+	padding: 40px;
+	transform: translate(-50%, -50%);
+	background: rgba(0, 0, 0, .5);
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+	border-radius: 10px;
+}
+
+.login-box h2 {
+	margin: 0 0 20px;
+	padding: 0;
+	color: #fff;
+	text-align: center;
+}
+
+.login-box .user-box {
+	position: relative;
+}
+
+.login-box .user-box input {
+	width: 100%;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #fff;
+	margin-bottom: 30px;
+	border: none;
+	border-bottom: 1px solid #fff;
+	outline: none;
+	background: transparent;
+}
+
+.login-box .user-box label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #fff;
+	pointer-events: none;
+	transition: .5s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+	top: -20px;
+	left: 0;
+	color: #03e9f4;
+	font-size: 12px;
+}
+
+#success p {
+	color: #fff;
+	font-size: 16px;
+}
+
+.file-area {
+	width: 100%;
+	position: relative;
+}
+.file-area input[type=file] {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+.file-area .file-content {
+		width: 100%;
+		padding: 10px;
+		border-bottom: 1px solid #fff;
+		color: #fff;
+		text-align: center;
+		transition: background 0.3s ease-in-out;
+
+}
+.file-area .file-content .success {
+	display: none;
+}
+.file-area:hover .file-content {
+	background: rgba(255, 255, 255, 0.1);
+}
+.file-area input[type=file]:focus + .file-content {
+	outline: 2px solid rgba(255, 255, 255, 0.5);
+	outline: -webkit-focus-ring-color auto 5px;
+}
+.file-area input[type=file]:valid + .file-content .success {
+	display: inline-block;
+}
+.file-area input[type=file]:valid + .file-content .default {
+	display: none;
+}

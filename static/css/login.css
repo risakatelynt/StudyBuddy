@@ -8,14 +8,24 @@
 
 @media (min-width: 992px) {
     .section .container {
-        width:750px;
+        width: 750px;
     }
 }
 
 .login {
     background: #5aa17f;
-    padding-bottom: 16px;
-    box-shadow: 6px 11px 10px;
+    /* padding-bottom: 16px;
+    box-shadow: 6px 11px 10px; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    /* background: rgba(0, 0, 0, .5); */
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
 }
 
 .heading-section {

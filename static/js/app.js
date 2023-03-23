@@ -102,7 +102,7 @@ $(document).ready(function () {
       });
     },
   });
-
+  $("#success").hide();
   $("#login-form").validate({
     rules: {
       username: {
@@ -163,7 +163,7 @@ $(document).ready(function () {
   });
   var notesList;
   if (top.location.pathname === "/notes/") {
-  username = sessionStorage.getItem("username");
+    username = sessionStorage.getItem("username");
     $("#userId").append(username);
     $.ajax({
       url: "http://127.0.0.1:8000/note/",
@@ -171,37 +171,37 @@ $(document).ready(function () {
       dataType: "json",
       // handle a successful response
       success: function (json) {
-        if (json.response) {
+        if (json.page_obj) {
           console.log(json);
-          notesList = json.response;
+          notesList = JSON.parse(json.page_obj);
           var count = 0;
-          json.response.forEach((item, j) => {
+          notesList.forEach((item, j) => {
             $(
               '<div class="row mb-5 py-3 bg-green" id="card' +
-                j +
+                item.pk +
                 '"><img class="col-5 col-md-3 card-img-top" src="' +
-                item.image +
+                item.fields.image +
                 '"><div class="col-7 col-md-9 px-0"><div id="edit' +
-                j +
+                item.pk +
                 '"><h5 class="col-12">' +
-                item.title +
+                item.fields.title +
                 '</h5><p class="col-12 card-text">' +
-                item.content +
+                item.fields.content +
                 "</p></div>" +
                 '<div class="col-12 my-3 stars-rating' +
-                j +
+                item.pk +
                 '">' +
                 '<span class="size-16 pl-3">' +
-                item.rank +
+                item.fields.rank +
                 "</span></div>" +
                 '<div class="col-12">' +
                 '<button id="' +
-                j +
+                item.pk +
                 '" type="button" class="btn btn-dark float-end" data-toggle="modal" data-target="#myModal">Details</button></div>' +
                 "</div></div>"
             ).appendTo(".notesList");
           });
-          json.response.forEach((mainItem, index) => {
+          notesList.forEach((mainItem, index) => {
             var stars = mainItem.rank;
             for (let k = 0; k < stars; k++) {
               $('<span class="fa fa-star checked"></span>').prependTo(
@@ -212,11 +212,11 @@ $(document).ready(function () {
           $(".carousel-item").first().addClass("active");
           $(".carousel-indicators > li").first().addClass("active");
           $("#carousel-example-generic").carousel();
-          for (let k = 0; k < json.response.length; k++) {
-            $(".hide-save" + k).hide();
+          for (let k = 0; k < notesList.length; k++) {
+            $(".hide-save" + notesList[k].pk).hide();
           }
-        } else if (json.response && json.response.message) {
-          console.log(json.response.message);
+        } else {
+          console.log(json);
         }
         setTimeout(function () {
           $(".spinner-border").hide();
@@ -233,7 +233,34 @@ $(document).ready(function () {
         }, 1000);
       },
     });
-    console.log(username, $("#username").val());
+
+    $.ajax({
+      url: "http://127.0.0.1:8000/questions/",
+      type: "GET",
+    
+      // handle a successful response
+      success: function (json) {
+        if (json.questions) {
+          console.log(json);
+          var questionsList = JSON.parse(json.questions);
+        } else {
+          console.log(json);
+        }
+        setTimeout(function () {
+          $(".spinner-border").hide();
+          $(".container").removeClass("opacity");
+        }, 1000);
+      },
+
+      // handle a non-successful response
+      error: function (xhr, errmsg, err) {
+        console.log(errmsg);
+        setTimeout(function () {
+          $(".spinner-border").hide();
+          $(".container").removeClass("opacity");
+        }, 1000);
+      },
+    });
   }
 
   // Show the first tab and hide the rest
@@ -250,6 +277,11 @@ $(document).ready(function () {
     var activeTab = $(this).find("a").attr("href");
     $(activeTab).fadeIn();
     return false;
+  });
+
+  $("#notes-li").click(function () {
+    // window.history.replaceState(null, null,"http://127.0.0.1:8000/newnote/");
+    window.location.href = "http://127.0.0.1:8000/createnotes/";
   });
 
   // questions table
@@ -314,14 +346,40 @@ $(document).ready(function () {
   $(".notesList").on("click", ".float-end", function () {
     textareaData = $(".modal-textarea").val();
     id = $(this).attr("id");
-    $("#myModal img").attr("src", notesList[id].image);
-    $(".input-header").val(notesList[id].title);
-    $(".modal-textarea").text(notesList[id].content);
+    // $.ajax({
+    //   url: `http://127.0.0.1:8000/note/${id}`,
+    //   type: "GET",
+    //   dataType: "json",
+    //   // handle a successful response
+    //   success: function (json) {
+    //     if (json.response && json.response == "success") {
+    //       console.log(json);
+    //     } else if (json.response && json.response.message) {
+    //       console.log(json.response.message);
+    //     }
+    //     setTimeout(function () {
+    //       $(".spinner-border").hide();
+    //       $(".container").removeClass("opacity");
+    //     }, 2000);
+    //   },
+
+    //   // handle a non-successful response
+    //   error: function (xhr, errmsg, err) {
+    //     console.log(errmsg);
+    //     setTimeout(function () {
+    //       $(".spinner-border").hide();
+    //       $(".container").removeClass("opacity");
+    //     }, 1000);
+    //   },
+    // });
+    $("#myModal img").attr("src", notesList[id - 1].fields.image);
+    $(".input-header").val(notesList[id - 1].fields.title);
+    $(".modal-textarea").text(notesList[id - 1].fields.content);
     var stars = $("#stars li.star");
     for (i = 0; i < stars.length; i++) {
       $(stars[i]).removeClass("selected");
     }
-    for (i = 0; i < notesList[id].rank; i++) {
+    for (i = 0; i < notesList[id - 1].fields.rank; i++) {
       $(stars[i]).addClass("selected");
     }
   });
@@ -448,4 +506,78 @@ $(document).ready(function () {
     );
     $("#rating-number").text(newRatingValue);
   });
+
+  $("#createNoteForm").submit(function (event) {
+    $(".spinner-border").show();
+    var title = $("#notes-title").val();
+    var tag = $("#notes-tag").val();
+    var content = $("#notes-content").val();
+
+    $("#main-notes").hide();
+    $.ajaxSetup({
+      headers: {
+        "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
+          .value,
+      },
+    });
+    $.ajax({
+      url: "",
+      type: "POST",
+      data: {
+        title: title,
+        tag: tag,
+        content: content,
+      },
+      dataType: "json",
+      // handle a successful response
+      success: function (json) {
+        if (json.response && json.response == "success") {
+          console.log(json);
+        } else if (json.response && json.response.message) {
+          console.log(json.response.message);
+        }
+        setTimeout(function () {
+          $(".spinner-border").hide();
+          $(".container").removeClass("opacity");
+          $("#success").show();
+        }, 2000);
+      },
+
+      // handle a non-successful response
+      error: function (xhr, errmsg, err) {
+        console.log(errmsg);
+        setTimeout(function () {
+          $(".spinner-border").hide();
+          $(".container").removeClass("opacity");
+        }, 1000);
+      },
+    });
+    event.preventDefault();
+  });
+  $("#create-notes").click(function () {
+    $("#main-notes").show();
+    $("#success").hide();
+  });
+
+
+
+  $('#questionBody').on('click', '#Detail', function () {
+    // 获取问题的ID
+    var question_id = $(this).data('question-id');
+
+    // 发送Ajax请求获取问题的详细信息
+    $.ajax({
+        url: '/questionDetail?' + 'question_id=' + question_id,
+        type: 'GET',
+        success: function (data) {
+
+            // 将问题的详细信息显示在模态框中
+            $('textarea[name="content"]').val(data);
+            $('input[name="rating"]').val(data);
+            console.log(data);
+        }
+    });
+});
+
+  
 });

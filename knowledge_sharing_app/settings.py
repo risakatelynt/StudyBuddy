@@ -44,7 +44,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "knowledge_sharing_app.urls"
-AUTH_USER_MODEL = 'api.User'
+AUTH_USER_MODEL = 'api.UserProfile'
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -69,9 +69,12 @@ WSGI_APPLICATION = "knowledge_sharing_app.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "shareNote",
+        'USER': "root",
+        'PASSWORD': "angular123",
+        'HOST': "127.0.0.1"
     }
 }
 

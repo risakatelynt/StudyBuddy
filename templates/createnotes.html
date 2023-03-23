@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title_block %} Notes {% endblock %}
+{% block body_block %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/createnotes.css' %}" />
+
+<div class="spinner-border text-warning" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+
+<div class="table content opacity">
+    <a class="nav-link" href="http://127.0.0.1:8000/notes/">
+        <button class="home-btn mb-0">Home</button>
+    </a>
+    <div id="main-notes" class="login-box">
+        <h2>Create Notes</h2>
+        <form method="POST" id="createNoteForm" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="user-box">
+                <input type="text" name="title" id="notes-title" class="title" name="title">
+                <label>Title</label>
+            </div>
+            <div class="user-box">
+                <input type="text" id="notes-tag" class="tag-input mb-2" name="tag">
+                <div class="tag-examples mb-3">
+                    <span class="tag">Computer Science</span>
+                    <span class="tag">Web</span>
+                    <span class="tag">Internet Technology</span>
+                </div>
+                <label>Tag</label>
+            </div>
+            <div class="user-box">
+                <input id="notes-content" class="tag-input" />
+                <label>Content</label>
+            </div>
+            <div class="user-box form-group file-area">
+                <input type="file" name="images" id="images" required="required" />
+                <div class="file-content">
+                    <div class="success">Image is uploaded</div>
+                    <div class="default">Click here to upload an image</div>
+                </div>
+                <!-- <label for="images">Image</label> -->
+            </div>
+            <button type="submit" class="save-btn float-right" id="save-notes">Save</button>
+        </form>
+    </div>
+
+    <div id="success" class="login-box hide">
+        <p>Created notes successfully!</p>
+        <p>Would you like to create a new note?</p>
+        <button type="submit" class="create-btn float-right" id="create-notes">Create</button>
+    </div>
+
+
+    <!-- <form method="POST" id="createNoteForm">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+                        <input type="text" id="notes-title" class="title" placeholder="Title: What is a Web App?"
+                            name="title">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input type="text" id="notes-tag" class="tag-input" placeholder="Please Enter a Tag" name="tag">
+                        <div class="tag-examples">
+                            <span class="tag">Computer Science</span>
+                            <span class="tag">Web</span>
+                            <span class="tag">Internet Technology</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="editor">
+                            <textarea id="notes-content" class="tag-input"></textarea>
+                            {% comment %} <p>It is a distributed information management system (DIM)</p>
+                            <p>Enables management, sharing, finding and presentation of information over the web</p>
+                            <p>Dose so over a network, in a distributed fashion</p>
+                            <p>Typically has many users, often geographically separated</p>
+                            <p>Ideally DIMs enable users to access timely, relevant and usefull information in a
+                                seamless manner
+                            </p>
+                            {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <button type="submit" class="save-btn" id="save-notes">Save</button>
+                </div>
+            </form> -->
+    <!-- </div>
+    </div> -->
+</div>
+{% endblock %}

@@ -1,5 +1,6 @@
-from .models import User,Tag,Note,Question
+from .models import Answer, TagsAndNotes, TagsAndQuestions,Tag,Note,Question, UserProfile
 from .serializers import NoteSerializer
+from django.core import serializers
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
@@ -11,6 +12,9 @@ from django.contrib import messages
 from datetime import datetime
 from django.views import View
 from .forms import NoteForm
+from rest_framework.response import Response
+from django.core.paginator import Paginator
+from itertools import chain
 
 # Create your views here.
 def loginview(request):
@@ -18,7 +22,7 @@ def loginview(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         try:
-            user = User.objects.get(username=username) 
+            user = UserProfile.objects.get(username=username) 
         except:
             messages.error(request,'User does not exist')
             
@@ -52,11 +56,11 @@ def register(request):
         # 校验密码是否一致
         if password == password2:
             # 校验用户名是否已被注册
-            if User.objects.filter(username=username).exists():
+            if UserProfile.objects.filter(username=username).exists():
                 return render(request, 'register.html', {'error': 'Username already exists'})
             else:
                 # 创建新用户
-                user = User.objects.create_user(username=username, password=password, email=email)
+                user = UserProfile.objects.create_user(username=username, password=password, email=email)
                 user.save()
                 # 注册成功，自动登录并跳转到主页
                 user = authenticate(username=username, password=password)
@@ -80,17 +84,17 @@ def signup(request):
         # 校验密码是否一致
         if password == password2:
             # 校验用户名是否已被注册
-            if User.objects.filter(username=username).exists():
+            if UserProfile.objects.filter(username=username).exists():
                 # return render(request, 'signup.html', {'error': 'Username already exists'})
                 status_message = {'response' : {'message': 'Username already exists'}}
                 return JsonResponse(status_message)
-            if User.objects.filter(email=email).exists():
+            if UserProfile.objects.filter(email=email).exists():
                 # return render(request, 'signup.html', {'error': 'Username already exists'})
                 status_message = {'response' : {'message': 'email id already exists'}}
                 return JsonResponse(status_message)
             else:
                 # 创建新用户
-                user = User.objects.create_user(username=username, password=password, email=email)
+                user = UserProfile.objects.create_user(username=username, password=password, email=email)
                 user.save()
                 # 注册成功，自动登录并跳转到主页
                 user = authenticate(username=username, password=password)
@@ -118,28 +122,35 @@ def createNote(request):
         tag_name = request.POST.get('tag')
         tag, created = Tag.objects.get_or_create(name=tag_name)
 
-        Note.objects.create(
+        note = Note.objects.create(
             user=request.user,
             tag=tag,
             title=request.POST.get('title'),
             content=request.POST.get('content'),
         )
-        return redirect('notes.html')
-
-    context = {'form': form, 'tags': tags}
-    return render(request, 'notes.html', context)
-
-def getNote(request):
-    if request.method == 'GET':
-        notes = [{"image" : "../static/images/image1.png", "title": "Django cautions", "content": "A brief description of the Django frameworks", "rank": "4"},
-                 {"image" : "../static/images/image2.png","title": "Introduction to Django", "content": "Overview of the history of Django has advantages and disadvantages, etc.", "rank": "3"},
-                 {"image" : "../static/images/image3.png","title": "Django's manual", "content": "Some basic teaching of Django", "rank": "3"},
-                 {"image" : "../static/images/jquery.png","title": "jQuery", "content": "How to use jQuery", "rank": "5"}, 
-                 {"image" : "../static/images/frontend.jpg","title": "Frontend", "content": "Introduction to HTML, CSS, JS", "rank": "4"}, 
-                 {"image" : "../static/images/angular.png","title": "Angular", "content": "How to use angular to create a single page application", "rank": "5"},]
-        status_message = {'response' : notes}
-        # return render(request, 'notes.html', status_message)
+        status_message = {'response' : 'success'}
         return JsonResponse(status_message)
+        # serializer = NoteSerializer(note, many = False)
+        # return Response(serializer.data)
+        # return render(request, 'notes.html')
+    else:
+        return render(request, 'createnotes.html')
+    # context = {'form': form, 'tags': tags}
+    # return render(request, 'newnoteTest.html', context)
+
+# def getNote(request):
+#     if request.method == 'GET':
+#         note = Note.objects.all()
+#         note_json = serializers.serialize('json', note)
+#         notes = [{"image" : "../static/images/image1.png", "title": "Django cautions", "content": "A brief description of the Django frameworks", "rank": "4"},
+#                  {"image" : "../static/images/image2.png","title": "Introduction to Django", "content": "Overview of the history of Django has advantages and disadvantages, etc.", "rank": "3"},
+#                  {"image" : "../static/images/image3.png","title": "Django's manual", "content": "Some basic teaching of Django", "rank": "3"},
+#                  {"image" : "../static/images/jquery.png","title": "jQuery", "content": "How to use jQuery", "rank": "5"}, 
+#                  {"image" : "../static/images/frontend.jpg","title": "Frontend", "content": "Introduction to HTML, CSS, JS", "rank": "4"}, 
+#                  {"image" : "../static/images/angular.png","title": "Angular", "content": "How to use angular to create a single page application", "rank": "5"},]
+#         status_message = {'response' : notes, 'data': note_json}
+#         # return render(request, 'notes.html', status_message)
+#         return JsonResponse(status_message)
 
 def updateNote(request, pk):
     note = Note.objects.get(id=pk)
@@ -155,7 +166,7 @@ def updateNote(request, pk):
         note.tag = tag
         note.description = request.POST.get('description')
         note.save()
-        return redirect('notes.html')
+        return render(request, 'notes.html')
 
     context = {'form': form, 'tags': tags, 'note': note}
     return render(request, 'notes.html', context)
@@ -168,7 +179,197 @@ def deleteNote(request, pk):
 
     if request.method == 'POST':
         note.delete()
-        return redirect('notes.html')
+        return render(request, 'notes.html')
     return render(request, 'notes.html', {'obj': note})
 
+def newNote(request):
+    return render(request, 'newNote.html')
 
+# 分页显示所有笔记/Show all notes in pages
+def notes_lists(request):
+    if request.method == "GET":
+        all_notes = Note.objects.all()
+        # paginator = Paginator(all_notes, 10)
+        # page_number = request.GET.get('page')
+        # page_obj = paginator.get_page(page_number)
+        page_json = serializers.serialize('json', all_notes)
+        # note_json = serializers.serialize('json',  all_notes)
+        # return render(request, "notes.html", {
+        #     'page_obj': page_obj,
+        #     "questions": all_notes
+        # })
+        return JsonResponse( {'page_obj': page_json})
+
+# 写笔记/Writing notes
+def write_note(request):
+    if request.method == "POST":
+        form_data = request.POST
+        userId = form_data.POST.get('user_id')
+        noteContent = form_data.POST.get('content')
+        tagId = form_data.POST("tag_id")
+        note = Note()
+        note.user_id = userId
+        note.content = noteContent
+        note.tag_id = tagId
+        note.save()
+        return render(request, "notes.html", {
+            'state': 'success',
+        })
+
+# 点击查看笔记详情/Click for details of notes
+def noteDetail(request, pk):
+    if request.method == "GET":
+        # noteId = request.GET.get(pk)
+        note = Note.objects.get(id=pk)
+        # page_json = serializers.serialize('json', note)
+        # return render(request, "notes", {
+        #     'note': note,
+        # })
+        # serializer = NoteSerializer(note, many = False)
+        return JsonResponse({'page_obj': note})
+
+# 点击为笔记打分/Click to rate the notes
+def rateNote(request):
+    if request.method == "POST":
+        form_data = request.POST
+        noteId = form_data.POST.get('note_id')
+        noteRank = form_data.POST.get('rank')
+        print("get id=" + noteId)
+        note = Note.objects.get(pk=noteId)
+        note.rank = noteRank
+        note.save()
+        return render(request, "notes.html", {
+            'state': 'success',
+        })
+
+# 点击显示标签下的笔记/Click to show notes under the tab
+def tagNotes(request):
+    if request.method == "GET":
+        tag_id = request.GET.get('tag_id')
+        tagAndNotes = TagsAndNotes.objects.filter(tag_id = tag_id)
+        all_tagNotes = tagAndNotes.all()
+        all_notes = []
+        for tagNote in all_tagNotes:
+            new_note = Note.objects.get(pk = tagNote.note_id)
+            all_notes.append(new_note)
+        paginator = Paginator(all_notes, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, "notes.html", {
+            'page_obj': page_obj,
+            "notes": all_notes
+        })
+
+# 对笔记名称和内容进行模糊查找/Fuzzy search for note titles and content
+def searchNotes(request):
+    if request.method == "GET":
+        keyword = request.GET.get('keyword')
+        print("get keyword=" + keyword)
+        note1 = Note.objects.filter(title__contains=keyword)
+        note2 = Note.objects.filter(content__contains=keyword)
+        note = list(chain(note1,note2))
+        return render(request, "notes.html", {
+            'note': note,
+        })
+
+
+def allQuestions(request):
+    if request.method == "GET":
+        all_questions = Question.objects.all()
+        paginator = Paginator(all_questions, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, "questions.html", {
+            'page_obj': page_obj,
+            "questions": all_questions
+        })
+        # question_json = serializers.serialize('json', all_questions)
+        # return render(request, "notes.html", {
+        #     'page_obj': page_obj,
+        #     "questions": all_notes
+        # })
+        # return JsonResponse( {"questions": question_json})
+    # else: 
+    #     return render(request, "questions.html")
+
+# 点击显示问题细节内容/Click to show details of the problem
+def questionDetail(request):
+    if request.method == "GET":
+        questionId = request.GET.get('question_id')
+        print("get id=" + questionId)
+        question = Question.objects.get(pk=questionId)
+        answers = Answer.objects.filter(question_id=questionId)
+        max = -1
+        for answer in answers:
+            if answer.rank > max:
+                best_answer = answer
+            max = best_answer.rank
+        return render(request, "questions.html", {
+            'question': question,
+            'best_answer': best_answer
+        })
+
+# 回答问题/Answering questions
+def answerQuestion(request):
+    if request.method == "POST":
+        form_data = request.POST
+        question_id = form_data.POST.get('question_id')
+        user_id = form_data.POST.get('user_id')
+        answer_content = form_data.POST.get('answer')
+        question = Question.objects.get(pk=question_id)
+        question.user_id = user_id
+        answer = Answer();
+        answer.user_id = user_id
+        answer.content = answer_content
+        answer.question_id = question_id
+        answer.save()
+        question.save()
+    return render(request, "questions.html", {
+        'state': 'success',
+    })
+
+# 点击显示标签下的问题/Click to show issues under the tab
+def tagQuestions(request):
+    if request.method == "GET":
+        tag_id = request.GET.get('tag_id')
+        tagAndQuestions = TagsAndQuestions.objects.filter(tag_id = tag_id)
+        all_tagQuestions = tagAndQuestions.all()
+        all_questions = []
+        for tagQuestion in all_tagQuestions:
+            new_question = Question.objects.get(pk = tagQuestion.question_id)
+            all_questions.append(new_question)
+        paginator = Paginator(all_questions, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, "questions.html", {
+            'page_obj': page_obj,
+            "questions": all_questions
+        })
+
+# 显示全部标签/Show all tags
+def allTag(request):
+    if request.method == "GET":
+        all_tags = Tag.objects.all()
+        return render(request, "questions.html", {
+            "tag":all_tags
+        })
+
+
+# 对问题名称进行模糊查找/Fuzzy search for questions titles and content
+def searchNotes(request):
+    if request.method == "GET":
+        keyword = request.GET.get('keyword')
+        print("get keyword=" + keyword)
+        questions1 = Question.objects.filter(title__contains=keyword)
+        questions2 = Question.objects.filter(content__contains=keyword)
+        questions = list(chain(questions1, questions2))
+        return render(request, "notes.html", {
+            'questions': questions,
+        })
+
+def allTags(request):
+    if request.method == "GET":
+        all_tag = Tag.objects.all()
+        return render(request, "questions.html", {
+            'tags':all_tag,
+        })
