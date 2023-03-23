@@ -264,8 +264,8 @@ $(document).ready(function () {
                   '<td class="text-center">' +
                   question.fields.user +
                   ' </td><td class="text-center ">' +
-                  '<div class="row"><div class="col"><button id="Detail" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#questionDetail" data-question-id="' +
-                  question.fields.id +
+                  '<div class="row"><div class="col"><button id="Detail" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#questionDetail" id="question' +
+                  j +
                   ' ">Detail</button></div>' +
                   '<div class="col"><button id="Answer" type="button" class="btn btn-success btn-sm">Answer</button></div>' +
                   '<div class="col"><button id="Collect" type="button" class="btn btn-info btn-sm">Collect</button></div>' +

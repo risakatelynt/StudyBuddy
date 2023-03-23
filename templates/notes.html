@@ -48,27 +48,28 @@
             </div>
         </div>
         <div class="tab-pane" id="questions-tab" role="tabpanel">
-            <div class="modal fade" id="questionDetail" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="questionDetail" aria-labelledby="exampleModalLabel" role="dialog">
                 <div class="modal-dialog modal-dialog-centered">
+                    {% csrf_token %}
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title text-white" id="exampleModalLabel" id="questionDetailTitle"></h5>
-                            <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                             <form id="questionDetailForm">
                                 <div class="mb-3">
                                     <label for="editor" class="form-label text-white">Content</label>
-                                    <textarea class="form-control text-white" id="editor" name="content"></textarea>
+                                    <textarea class="form-control" id="editor" name="content"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="editor" class="form-label text-white">Best Answer</label>
-                                    <textarea class="form-control text-white" id="editor" name="best_answer"></textarea>
+                                    <textarea class="form-control" id="editor" name="best_answer"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="rating" class="form-label text-white">Rating</label>
-                                    <input type="range" class="form-range text-white" min="0" max="5" id="rating" name="rating">
+                                    <input type="range" class="form-range text-white" min="0" max="5" id="rating"
+                                        name="rating">
 
                                     </input>
                                 </div>
@@ -79,14 +80,7 @@
                 </div>
             </div>
 
-
-
-
-
-
-
-
-
+            <!-- Questions table starts -->
             <div class="row mx-sm-5 pt-5">
                 <table class="table table-class" id="myTable">
                     <thead>
@@ -122,8 +116,8 @@
             </div>
             <div class="modal-body">
                 <img id="modal-img" class="card-img-top" src="{% static 'images/image1.png' %}" alt="Card image 1" />
-                <input type="text" class="input-header text-white" value="Content not found" />
-                <textarea class="modal-textarea text-white">Content not found</textarea>
+                <input type="text" class="input-header" value="Content not found" />
+                <textarea class="modal-textarea">Content not found</textarea>
                 <div class="row">
                     <div class="col-4 text-white">Edit Ratings:
                         <span id="rating-number text-white"></span>

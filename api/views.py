@@ -308,10 +308,12 @@ def questionDetail(request):
             if answer.rank > max:
                 best_answer = answer
             max = best_answer.rank
-        return render(request, "questions.html", {
-            'question': question,
-            'best_answer': best_answer
-        })
+        # return render(request, "questions.html", {
+        #     'question': question,
+        #     'best_answer': best_answer
+        # })
+        # json =serializers.serialize('json', page_obj)
+        return JsonResponse( {'question': question, 'best_answer': best_answer})
 
 # 回答问题/Answering questions
 def answerQuestion(request):
