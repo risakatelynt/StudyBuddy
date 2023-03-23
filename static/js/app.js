@@ -264,7 +264,7 @@ $(document).ready(function () {
                   '<td class="text-center">' +
                   question.fields.user +
                   ' </td><td class="text-center ">' +
-                  '<div class="row"><div class="col"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#questionDetail" id="Detail-' +
+                  '<div class="row"><div class="col"><button type="button" onclick="details(event)" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#questionDetail" id="Detail-' +
                   question.pk +
                   ' ">Details</button></div>' +
                   '<div class="col"><button id="Answer-' +
@@ -410,7 +410,7 @@ $(document).ready(function () {
       // handle a successful response
       success: function (json) {
         if (json.response && json.response == "success") {
-          $('#myModal').modal('hide');
+          $("#myModal").modal("hide");
           window.location.href = "http://127.0.0.1:8000/notes/";
         }
         setTimeout(function () {
@@ -610,25 +610,43 @@ $(document).ready(function () {
       },
     });
   });
+
+  $(".fa-sign-out").click(function () {
+    window.location.href = "/";
+  });
 });
 
-document.addEventListener("click", function (e) {
-  const target = e.target.closest(".btn-sm"); // Or any other selector.
+// document.addEventListener("click", function (e) {
+//   const target = e.target.closest(".btn-sm"); // Or any other selector.
 
-  if (target) {
-    // Do something with `target`.
-    var question_id = target.id.split("-");
+//   if (target) {
+//     // Do something with `target`.
+//     var question_id = target.id.split("-");
 
-    // 发送Ajax请求获取问题的详细信息
-    $.ajax({
-      url: "/questionDetail/" + question_id[1],
-      type: "GET",
-      success: function (data) {
-        // 将问题的详细信息显示在模态框中
-        $('textarea[name="content"]').val(data);
-        $('input[name="rating"]').val(data);
-        console.log(data);
-      },
-    });
-  }
-});
+//     // 发送Ajax请求获取问题的详细信息
+//     $.ajax({
+//       url: "/questionDetail/" + question_id[1],
+//       type: "GET",
+//       success: function (data) {
+//         // 将问题的详细信息显示在模态框中
+//         $('textarea[name="content"]').val(data);
+//         $('input[name="rating"]').val(data);
+//         console.log(data);
+//       },
+//     });
+//   }
+// });
+function details(event) {
+  console.log(event);
+  var id = event.currentTarget.id;
+  id = id.split("-");
+  $.ajax({
+    url: "/questionDetail/" + id[1],
+    type: "GET",
+    success: function (data) {
+      $('textarea[name="content"]').val(data);
+      $('input[name="rating"]').val(data);
+      console.log(data);
+    },
+  });
+}

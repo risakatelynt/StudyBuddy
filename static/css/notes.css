@@ -352,7 +352,21 @@ td:last-child {
     cursor: pointer;
 }
 
-#edit-btn, #delete-btn, #cancel-btn, #save-btn, .btn-submit,  #edit-btn:hover, #edit-btn:focus, #delete-btn:hover, #delete-btn:focus, #cancel-btn:hover, #cancel-btn:focus, #save-btn:hover, #save-btn:focus, .btn-submit:hover, .btn-submit:focus{
+#edit-btn,
+#delete-btn,
+#cancel-btn,
+#save-btn,
+.btn-submit,
+#edit-btn:hover,
+#edit-btn:focus,
+#delete-btn:hover,
+#delete-btn:focus,
+#cancel-btn:hover,
+#cancel-btn:focus,
+#save-btn:hover,
+#save-btn:focus,
+.btn-submit:hover,
+.btn-submit:focus {
     padding: 10px 20px;
     color: #03e9f4;
     font-size: 16px;
@@ -363,6 +377,7 @@ td:last-child {
     border: none;
     box-shadow: none;
 }
+
 .btn-sm {
     padding: 10px 20px;
     color: #03e9f4;
@@ -373,11 +388,16 @@ td:last-child {
     margin-bottom: 10px;
     box-shadow: none;
 }
-.btn-sm:hover, .btn-sm:focus, .blue-btn:hover, .blue-btn:focus {
+
+.btn-sm:hover,
+.btn-sm:focus,
+.blue-btn:hover,
+.blue-btn:focus {
     color: #03e9f4;
     background: black;
     border: none;
 }
+
 .blue-btn {
     color: #03e9f4;
     font-size: 16px;
@@ -389,6 +409,7 @@ td:last-child {
 .modal {
     background: linear-gradient(#141e30, #243b55);
 }
+
 .modal-content {
     background: rgba(0, 0, 0, .5);
     box-sizing: border-box;
@@ -398,4 +419,32 @@ td:last-child {
 
 body {
     background: #caffd6b5;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.fa-sign-out {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    width: 28px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    top: 59px;
+    right: 0;
+    width: 30%;
+    left: unset;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.text-black {
+    color: #000;
 }

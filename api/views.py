@@ -115,6 +115,8 @@ def login(request):
     context_dict = {}
     return render(request, 'login.html', context=context_dict)
 '''
+
+@ login_required
 def createNote(request):
     form = NoteForm()
     # tags = Tag.objects.all()
@@ -154,6 +156,7 @@ def createNote(request):
 #         # return render(request, 'notes.html', status_message)
 #         return JsonResponse(status_message)
 
+@ login_required
 def updateNote(request, pk):
     note = Note.objects.get(id=pk)
     # form = NoteForm(instance=note)
@@ -177,6 +180,7 @@ def updateNote(request, pk):
     # context = {'form': form, 'tags': tags, 'note': note}
     return render(request, 'notes.html')
 
+@ login_required
 def deleteNote(request, pk):
     note = Note.objects.get(id=pk)
 
@@ -189,10 +193,12 @@ def deleteNote(request, pk):
         return JsonResponse(status_message)
     return render(request, 'notes.html', {'obj': note})
 
+@ login_required
 def newNote(request):
     return render(request, 'newNote.html')
 
 # 分页显示所有笔记/Show all notes in pages
+@ login_required
 def notes_lists(request):
     if request.method == "GET":
         all_notes = Note.objects.all()
@@ -208,6 +214,7 @@ def notes_lists(request):
         return JsonResponse( {'page_obj': page_json})
 
 # 写笔记/Writing notes
+@ login_required
 def write_note(request):
     if request.method == "POST":
         form_data = request.POST
@@ -224,6 +231,7 @@ def write_note(request):
         })
 
 # 点击查看笔记详情/Click for details of notes
+@ login_required
 def noteDetail(request, pk):
     if request.method == "GET":
         # noteId = request.GET.get(pk)
@@ -236,6 +244,7 @@ def noteDetail(request, pk):
         return JsonResponse({'page_obj': note})
 
 # 点击为笔记打分/Click to rate the notes
+@ login_required
 def rateNote(request):
     if request.method == "POST":
         form_data = request.POST
@@ -250,6 +259,7 @@ def rateNote(request):
         })
 
 # 点击显示标签下的笔记/Click to show notes under the tab
+@ login_required
 def tagNotes(request):
     if request.method == "GET":
         tag_id = request.GET.get('tag_id')
@@ -268,6 +278,7 @@ def tagNotes(request):
         })
 
 # 对笔记名称和内容进行模糊查找/Fuzzy search for note titles and content
+@ login_required
 def searchNotes(request):
     if request.method == "GET":
         keyword = request.GET.get('keyword')
@@ -279,7 +290,7 @@ def searchNotes(request):
             'note': note,
         })
 
-
+@ login_required
 def allQuestions(request):
     if request.method == "GET":
         all_questions = Question.objects.all()
@@ -297,6 +308,7 @@ def allQuestions(request):
     #     return render(request, "questions.html")
 
 # 点击显示问题细节内容/Click to show details of the problem
+@ login_required
 def questionDetail(request, questionId):
     if request.method == "GET":
         # questionId = request.GET.get('question_id')
@@ -316,6 +328,7 @@ def questionDetail(request, questionId):
         return JsonResponse( {'question': question, 'best_answer': best_answer})
 
 # 回答问题/Answering questions
+@ login_required
 def answerQuestion(request):
     if request.method == "POST":
         form_data = request.POST
@@ -335,6 +348,7 @@ def answerQuestion(request):
     })
 
 # 点击显示标签下的问题/Click to show issues under the tab
+@ login_required
 def tagQuestions(request):
     if request.method == "GET":
         tag_id = request.GET.get('tag_id')
@@ -353,6 +367,7 @@ def tagQuestions(request):
         })
 
 # 显示全部标签/Show all tags
+@ login_required
 def allTag(request):
     if request.method == "GET":
         all_tags = Tag.objects.all()
@@ -362,6 +377,7 @@ def allTag(request):
 
 
 # 对问题名称进行模糊查找/Fuzzy search for questions titles and content
+@ login_required
 def searchNotes(request):
     if request.method == "GET":
         keyword = request.GET.get('keyword')
@@ -373,6 +389,7 @@ def searchNotes(request):
             'questions': questions,
         })
 
+@ login_required
 def allTags(request):
     if request.method == "GET":
         all_tag = Tag.objects.all()
