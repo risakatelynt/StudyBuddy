@@ -18,7 +18,8 @@ This repository contains a Course Review application where users can share and r
 
 ![image](https://github.com/risakatelynt/StudyBuddy/assets/124533180/99d0e837-b2a6-4712-a201-b9922f315530)
 
-![image](https://github.com/risakatelynt/StudyBuddy/assets/124533180/6879eea2-d623-46b8-9f46-307be3ecceee)
+![image](https://github.com/risakatelynt/StudyBuddy/assets/124533180/edc227aa-49ed-4ddc-b74e-ad20f6fd2a40)
+
 
 
 ## Features
