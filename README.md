@@ -1,21 +1,32 @@
 README
 
-# Course Review App
+# StudyBuddy App
 
 This repository contains a Course Review application where users can share and review courses they have learned.
 
-![image](https://github.com/risakatelynt/studybuddy/assets/124533180/bae82320-3106-49fa-84f2-cdcd6434995f)
+![image](https://github.com/risakatelynt/StudyBuddy/assets/124533180/85c4f290-b225-4083-b10b-afc1e1a2b387)
 
-![image](https://github.com/risakatelynt/studybuddy/assets/124533180/2fef6947-ae16-4706-8097-ae2d4eebc421)
+![image](https://github.com/risakatelynt/StudyBuddy/assets/124533180/f561c017-f024-42a6-b193-dd90b69e2547)
 
-![image](https://github.com/risakatelynt/studybuddy/assets/124533180/7c2854bf-a45f-40a7-b476-baee5af3aeda)
+![image](https://github.com/risakatelynt/StudyBuddy/assets/124533180/6f09c8dc-b52e-46ea-ac1e-1b3b82708bea)
+
+![image](https://github.com/risakatelynt/StudyBuddy/assets/124533180/0dc08f7c-5f76-49e7-8944-748bb3556f06)
+
+![image](https://github.com/risakatelynt/StudyBuddy/assets/124533180/7ac5b192-cd77-41d1-89f5-82dbf33cf9c3)
+
+**Search Filter:**
+
+![image](https://github.com/risakatelynt/StudyBuddy/assets/124533180/99d0e837-b2a6-4712-a201-b9922f315530)
+
+![image](https://github.com/risakatelynt/StudyBuddy/assets/124533180/6879eea2-d623-46b8-9f46-307be3ecceee)
+
 
 ## Features
 
 - Add descriptions, notes, and images for courses.
 - Rate and review courses.
 - View and discover courses reviewed by other users.
-- Search and filter courses based on different criteria.
+- Search and filter courses.
 
 ## Technologies Used
 
