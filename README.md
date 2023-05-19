@@ -2,7 +2,7 @@ README
 
 # Course Review App
 
-This repository contains a Course Review application where users can share and review courses they have learned using Angular, Django, Bootstrap, jQuery, HTML, and CSS. 
+This repository contains a Course Review application where users can share and review courses they have learned.
 
 ![image](https://github.com/risakatelynt/studybuddy/assets/124533180/bae82320-3106-49fa-84f2-cdcd6434995f)
 
@@ -19,11 +19,11 @@ This repository contains a Course Review application where users can share and r
 
 ## Technologies Used
 
-- Angular: Typescript framework for building user interfaces.
 - Django: Python web framework for building backend applications.
+- jQuery: JavaScript library for simplifying HTML document traversal and manipulation.
 - Bootstrap: CSS framework for responsive web design.
 - HTML: Markup language for structuring web pages.
-- SCSS: Style sheet language for specifying the visual presentation of a document.
+- CSS: Style sheet language for specifying the visual presentation of a document.
 
 ## Installation
 
@@ -33,13 +33,7 @@ This repository contains a Course Review application where users can share and r
 git clone <repository-url>
 ```
 
-2. Install the required dependencies:
-
-```
-npm install   # Install Angular and Node.js dependencies
-```
-
-3. Setup and activate a virtual environment:
+2. Setup and activate a virtual environment:
 
 ```
 python3 -m venv env
@@ -47,25 +41,25 @@ source env/bin/activate   # For Unix/Linux
 env\Scripts\activate   # For Windows
 ```
 
-4. Install the Python dependencies:
+3. Install the Python dependencies:
 
 ```
 pip install -r requirements.txt
 ```
 
-5. Set up the database:
+4. Set up the database:
 
 ```
 python manage.py migrate
 ```
 
-6. Start the development server:
+5. Start the development server:
 
 ```
 python manage.py runserver
 ```
 
-7. Access the application in your browser:
+6. Access the application in your browser:
 
 ```
 http://127.0.0.1:8000/
@@ -84,8 +78,6 @@ To configure the application, modify the following files:
 3. Add a new course by providing a description, notes, and images.
 4. Rate and review courses that you have learned.
 5. View detailed information about a specific course, including its ratings and reviews.
-6. Search for courses based on keywords or filter courses by categories, subjects, or other criteria.
-7. Interact with other users by commenting on their course reviews.
-8. Edit or delete your own courses, ratings, and reviews.
-9. Stay updated with the latest courses and reviews through notifications or email subscriptions.
-10. Log out from the application when done.
+6. Search for courses based on keywords.
+7. Edit or delete your own courses, ratings, and reviews.
+8. Log out from the application when done.
