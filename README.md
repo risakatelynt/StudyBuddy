@@ -42,7 +42,7 @@ This repository contains a Course Review application where users can share and r
 1. Clone the repository:
 
 ```
-git clone <repository-url>
+git clone https://github.com/risakatelynt/StudyBuddy.git
 ```
 
 2. Setup and activate a virtual environment:
